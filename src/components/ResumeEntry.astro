@@ -1,0 +1,35 @@
+---
+import ButtonLink from "./ButtonLink.astro";
+
+type Props = {
+  title: string;
+  subtitle: string;
+  bullets: string[];
+  date: string;
+  location: string;
+  href?: string;
+};
+
+const { title, subtitle, bullets, date, location, href } = Astro.props;
+---
+
+<article class="grid gap-5 py-6 md:grid-cols-[minmax(0,1fr)_190px_30px] md:gap-8">
+  <div class="space-y-3">
+    <h4 class="entry-title">{title}</h4>
+    <p class="body-copy">{subtitle}</p>
+    <ul class="body-copy ml-[1.1rem] list-disc space-y-1.5">
+      {bullets.map((bullet) => (
+        <li>{bullet}</li>
+      ))}
+    </ul>
+  </div>
+
+  <div class="space-y-1 text-left md:text-right">
+    <p class="body-copy">{date}</p>
+    <p class="meta-copy">{location}</p>
+  </div>
+
+  <div class="md:justify-self-end">
+    {href ? <ButtonLink href={href} label="Open" muted icon /> : null}
+  </div>
+</article>

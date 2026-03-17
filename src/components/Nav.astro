@@ -1,0 +1,60 @@
+---
+import { navItems } from "../data/home";
+
+type Props = {
+  currentPath?: string;
+};
+
+const { currentPath = "/" } = Astro.props;
+---
+
+<header class="page-container pt-8 md:pt-10">
+  <div class="grid grid-cols-1 items-center gap-5 md:grid-cols-[32px_1fr_auto] md:gap-8">
+    <a href="/" aria-label="LKT home" class="justify-self-start">
+      <img src="/lkt-logo.svg" alt="LKT" class="h-auto w-8" />
+    </a>
+
+    <nav aria-label="Primary" class="justify-self-start md:justify-self-center">
+      <ul role="list" class="ui-copy flex flex-wrap items-center gap-x-6 gap-y-3 md:gap-x-8">
+        {navItems.map((item) => {
+          const active = currentPath === item.href;
+          return (
+            <li>
+              <a
+                href={item.href}
+                class:list={[
+                  "transition-colors duration-100 ease-in-out hover:text-[var(--color-ink-muted)]",
+                  active && "accent-glow"
+                ]}
+                aria-current={active ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+
+    <a
+      href="mailto:ludovic@example.com"
+      class="ui-copy inline-flex items-center gap-2 justify-self-start md:justify-self-end"
+    >
+      <svg
+        aria-hidden="true"
+        class="h-[14px] w-[14px]"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M2 4H14V12H2V4ZM2 4L8 8.5L14 4"
+          stroke="currentColor"
+          stroke-width="1.4"
+          stroke-linecap="square"
+        />
+      </svg>
+      <span>Contact me</span>
+    </a>
+  </div>
+</header>

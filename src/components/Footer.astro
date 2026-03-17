@@ -1,0 +1,53 @@
+---
+import { navItems } from "../data/home";
+---
+
+<footer class="page-container mt-24 pb-12 pt-10 md:mt-28 md:pb-16">
+  <div class="divider-line pt-8">
+    <div class="grid gap-8 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
+      <div class="space-y-3">
+        <a href="/" aria-label="LKT home" class="inline-block">
+          <img src="/lkt-logo.svg" alt="LKT" class="h-auto w-8" />
+        </a>
+        <p class="body-copy max-w-[30rem]">
+          PhD student. Audio representation learning researcher. Street and documentary photography.
+        </p>
+        <p class="ui-copy">© 2026 Ludovic K. Tuncay</p>
+      </div>
+
+      <div class="space-y-3">
+        <p class="ui-copy">Navigation</p>
+        <ul role="list" class="space-y-2">
+          {navItems.map((item) => (
+            <li>
+              <a href={item.href} class="body-copy transition-colors duration-100 ease-in-out hover:text-black">
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="space-y-3">
+        <p class="ui-copy">External links</p>
+        <ul role="list" class="space-y-2">
+          <li>
+            <a href="mailto:ludovic@example.com" class="body-copy transition-colors duration-100 ease-in-out hover:text-black">
+              Email
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/LudovicTuncay" class="body-copy transition-colors duration-100 ease-in-out hover:text-black">
+              GitHub
+            </a>
+          </li>
+          <li>
+            <a href="https://scholar.google.com" class="body-copy transition-colors duration-100 ease-in-out hover:text-black">
+              Google Scholar
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

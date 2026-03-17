@@ -1,17 +1,123 @@
 ---
-
+import ButtonLink from "../components/ButtonLink.astro";
+import HeroPortrait from "../components/HeroPortrait.astro";
+import ResumeEntry from "../components/ResumeEntry.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import {
+  aboutParagraphs,
+  education,
+  experiences,
+  introActions,
+  languages,
+  photographyParagraph,
+  publications,
+  researchParagraph
+} from "../data/home";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="LKT | Home"
+  currentPath="/"
+  description="Academic portfolio for Ludovic K. Tuncay covering machine learning research, publications, experience, and photography."
+>
+  <section class="page-container pt-12 md:pt-16">
+    <div class="space-y-10 md:space-y-12">
+      <div class="max-w-[30rem] space-y-1">
+        <h1 class="display-title accent-glow">Hello 👋🏻</h1>
+        <p class="display-title accent-glow">Welcome to my website !</p>
+      </div>
+
+      <div class="grid items-start gap-10 md:grid-cols-[minmax(0,560px)_minmax(0,1fr)] md:gap-12">
+        <HeroPortrait />
+
+        <div class="space-y-8 md:pt-8">
+          <p class="body-copy max-w-[24rem]">
+            I am Ludovic K. Tuncay, a PhD student working on machine learning with a focus on
+            machine listening. This website gathers my research, selected work, and one of my
+            favorite hobbies: photography.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            {introActions.map((action) => (
+              <ButtonLink href={action.href} label={action.label} muted={action.muted} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="page-container pt-[var(--section-gap-xl)]">
+    <div class="space-y-10">
+      <SectionHeading title="About me" />
+      <div class="max-w-[62rem] space-y-5">
+        {aboutParagraphs.map((paragraph) => (
+          <p class="body-copy">{paragraph}</p>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="page-container pt-[var(--section-gap-lg)]">
+    <div class="space-y-5">
+      <h3 class="section-title text-[clamp(2rem,4vw,2.75rem)]">Thesis research interests</h3>
+      <p class="body-copy max-w-[62rem]">{researchParagraph}</p>
+      <div>
+        <ButtonLink href="/research-code" label="Learn more" />
+      </div>
+    </div>
+  </section>
+
+  <section class="page-container pt-[var(--section-gap-md)]">
+    <div class="space-y-5">
+      <h3 class="section-title text-[clamp(2rem,4vw,2.75rem)]">Why photography ?</h3>
+      <p class="body-copy max-w-[62rem]">{photographyParagraph}</p>
+      <div>
+        <ButtonLink href="/photography" label="Take a look" />
+      </div>
+    </div>
+  </section>
+
+  <section id="resume" class="page-container pt-[var(--section-gap-xl)]">
+    <div class="space-y-10">
+      <SectionHeading title="Resume" />
+
+      <div class="space-y-1">
+        <h3 class="section-title text-[clamp(2rem,4vw,2.75rem)]">Publications</h3>
+        <div class="mt-6 divide-y divide-[var(--color-divider)]">
+          {publications.map((entry) => (
+            <ResumeEntry {...entry} />
+          ))}
+        </div>
+      </div>
+
+      <div class="space-y-1">
+        <h3 class="section-title text-[clamp(2rem,4vw,2.75rem)]">Experience</h3>
+        <div class="mt-6 divide-y divide-[var(--color-divider)]">
+          {experiences.map((entry) => (
+            <ResumeEntry {...entry} />
+          ))}
+        </div>
+      </div>
+
+      <div class="space-y-1">
+        <h3 class="section-title text-[clamp(2rem,4vw,2.75rem)]">Education</h3>
+        <div class="mt-6 divide-y divide-[var(--color-divider)]">
+          {education.map((entry) => (
+            <ResumeEntry {...entry} />
+          ))}
+        </div>
+      </div>
+
+      <div class="space-y-6 pt-3">
+        <h3 class="section-title text-[clamp(2rem,4vw,2.75rem)]">Languages I speak</h3>
+        <ul role="list" class="grid gap-3 md:grid-cols-4 md:gap-8">
+          {languages.map((language) => (
+            <li class="body-copy text-black">{language}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

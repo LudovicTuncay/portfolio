@@ -1,0 +1,42 @@
+---
+type Props = {
+  href: string;
+  label: string;
+  muted?: boolean;
+  icon?: boolean;
+  external?: boolean;
+};
+
+const { href, label, muted = false, icon = false, external = false } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={[
+    "button-shell",
+    muted ? "button-muted" : "button-primary",
+    icon && "h-[30px] w-[30px] p-0"
+  ]}
+  aria-label={icon ? label : undefined}
+  target={external ? "_blank" : undefined}
+  rel={external ? "noreferrer" : undefined}
+>
+  {icon ? (
+    <svg
+      aria-hidden="true"
+      class="h-[10px] w-[10px]"
+      viewBox="0 0 10 10"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M1 9L9 1M3 1H9V7"
+        stroke="currentColor"
+        stroke-width="1.4"
+        stroke-linecap="square"
+      />
+    </svg>
+  ) : (
+    <span>{label}</span>
+  )}
+</a>

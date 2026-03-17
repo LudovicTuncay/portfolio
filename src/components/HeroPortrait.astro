@@ -1,0 +1,51 @@
+<div
+  class="relative aspect-[1.18/1] overflow-hidden border-[2px] border-black bg-white"
+  aria-label="Stylized portrait placeholder"
+>
+  <svg viewBox="0 0 720 620" xmlns="http://www.w3.org/2000/svg" class="h-full w-full">
+    <defs>
+      <filter id="blur-xl" x="-25%" y="-25%" width="150%" height="150%">
+        <feGaussianBlur stdDeviation="24" />
+      </filter>
+      <linearGradient id="bg-grad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#1f60ff" />
+        <stop offset="26%" stop-color="#52d9ff" />
+        <stop offset="54%" stop-color="#fde16b" />
+        <stop offset="75%" stop-color="#ef4444" />
+        <stop offset="100%" stop-color="#0b0b0b" />
+      </linearGradient>
+    </defs>
+
+    <rect width="720" height="620" fill="#f4f4f4" />
+    <rect x="0" y="0" width="720" height="620" fill="url(#bg-grad)" opacity="0.22" />
+
+    <g filter="url(#blur-xl)" opacity="0.95">
+      <rect x="28" y="30" width="56" height="560" fill="#0a58ff" />
+      <rect x="112" y="16" width="70" height="580" fill="#59d4ff" />
+      <rect x="220" y="20" width="58" height="550" fill="#f7b500" />
+      <rect x="496" y="40" width="42" height="520" fill="#ef4444" />
+      <rect x="566" y="24" width="54" height="552" fill="#fb923c" />
+      <rect x="644" y="12" width="40" height="560" fill="#2563eb" />
+    </g>
+
+    <ellipse cx="360" cy="340" rx="180" ry="224" fill="#1a1a1a" opacity="0.88" />
+    <path
+      d="M299 195C323 167 369 151 403 165C454 187 484 243 484 301C484 344 469 389 439 425C406 465 356 489 309 479C259 468 226 414 226 351C226 289 252 236 299 195Z"
+      fill="#2c2c2c"
+    />
+    <path
+      d="M329 282C352 261 391 253 425 262C455 270 476 290 489 318C460 322 441 343 426 365C403 398 383 430 352 446C320 463 276 455 250 427C225 400 221 357 236 324C250 292 284 276 329 282Z"
+      fill="#f0c7a4"
+      opacity="0.9"
+    />
+    <path
+      d="M352 242C370 212 405 198 436 203C471 208 502 237 513 278C488 273 464 279 447 296C430 313 419 337 408 358C390 333 374 303 352 242Z"
+      fill="#161616"
+    />
+    <rect x="283" y="284" width="88" height="42" rx="8" fill="none" stroke="#e8f2ff" stroke-width="6" />
+    <rect x="357" y="290" width="100" height="42" rx="8" fill="none" stroke="#dceaff" stroke-width="6" />
+    <path d="M370 304H358" stroke="#dceaff" stroke-width="5" />
+    <path d="M351 377C366 362 392 357 418 360C445 363 468 376 484 398" stroke="#1c1c1c" stroke-width="12" stroke-linecap="round" />
+    <path d="M244 510C303 473 406 462 486 488" stroke="#0f0f0f" stroke-width="22" stroke-linecap="round" />
+  </svg>
+</div>
