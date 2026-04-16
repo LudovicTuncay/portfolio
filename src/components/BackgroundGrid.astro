@@ -1,0 +1,64 @@
+---
+---
+
+<div class="bg-grid" aria-hidden="true"></div>
+
+<script>
+  const grid = document.querySelector<HTMLElement>(".bg-grid");
+  if (grid) {
+    const syncScroll = () => {
+      grid.style.setProperty("--scroll-x", `${window.scrollX}px`);
+      grid.style.setProperty("--scroll-y", `${window.scrollY}px`);
+    };
+
+    window.addEventListener(
+      "pointermove",
+      (event) => {
+        grid.style.setProperty("--x", `${event.clientX}px`);
+        grid.style.setProperty("--y", `${event.clientY}px`);
+      },
+      { passive: true }
+    );
+
+    window.addEventListener("scroll", syncScroll, { passive: true });
+    syncScroll();
+  }
+</script>
+
+<style>
+  .bg-grid {
+    --x: 50vw;
+    --y: 50vh;
+    --scroll-x: 0px;
+    --scroll-y: 0px;
+    --grid-size: 24px;
+    --grid-line: rgb(0 0 0 / 10%);
+    --reveal-radius: 120px;
+
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+    background-position: calc(-1 * var(--scroll-x)) calc(-1 * var(--scroll-y));
+    -webkit-mask-image: radial-gradient(
+      circle var(--reveal-radius) at var(--x) var(--y),
+      black 0%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(
+      circle var(--reveal-radius) at var(--x) var(--y),
+      black 0%,
+      transparent 100%
+    );
+  }
+
+  @media (hover: none) {
+    .bg-grid {
+      display: none;
+    }
+  }
+</style>
