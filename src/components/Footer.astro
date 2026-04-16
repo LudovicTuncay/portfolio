@@ -1,24 +1,39 @@
 ---
-import { navItems } from "../data/home";
+const footerNavItems = [
+  { href: "/", label: "Home" },
+  { href: "/#about", label: "About Me" },
+  { href: "/#resume", label: "Resume" },
+  { href: "/research-code", label: "Research & code" },
+  { href: "/photography", label: "Photography" }
+];
+
+const externalLinks = [
+  { href: "mailto:ludovic@example.com", label: "Contact (mail)" },
+  { href: "https://github.com/LudovicTuncay", label: "Github" },
+  { href: "https://hal.science", label: "HAL" },
+  { href: "https://scholar.google.com", label: "Google Scholar" },
+  { href: "https://linkedin.com", label: "LinkedIn" },
+  { href: "https://instagram.com", label: "Instagram" }
+];
 ---
 
-<footer class="page-container mt-24 pb-12 pt-10 md:mt-28 md:pb-16">
-  <div class="divider-line pt-8">
-    <div class="grid gap-8 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
-      <div class="space-y-3">
+<footer class="page-container mt-10 pb-14 pt-12 md:mt-12 md:pb-20">
+  <div class="divider-line pt-6">
+    <div class="grid gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
+      <div class="space-y-4">
         <a href="/" aria-label="LKT home" class="inline-block">
           <img src="/lkt-logo.svg" alt="LKT" class="h-auto w-8" />
         </a>
         <p class="body-copy max-w-[30rem]">
-          PhD student. Audio representation learning researcher. Street and documentary photography.
+          PhD student in Artificial Intelligence with a taste for photography.
         </p>
-        <p class="ui-copy">© 2026 Ludovic K. Tuncay</p>
+        <p class="footer-copyright">&copy; 2026 Ludovic K. TUNCAY</p>
       </div>
 
-      <div class="space-y-3">
-        <p class="ui-copy">Navigation</p>
+      <div class="space-y-4">
+        <p class="entry-title">Navigation</p>
         <ul role="list" class="space-y-2">
-          {navItems.map((item) => (
+          {footerNavItems.map((item) => (
             <li>
               <a href={item.href} class="body-copy transition-colors duration-100 ease-in-out hover:text-black">
                 {item.label}
@@ -28,24 +43,21 @@ import { navItems } from "../data/home";
         </ul>
       </div>
 
-      <div class="space-y-3">
-        <p class="ui-copy">External links</p>
+      <div class="space-y-4">
+        <p class="entry-title">External links</p>
         <ul role="list" class="space-y-2">
-          <li>
-            <a href="mailto:ludovic@example.com" class="body-copy transition-colors duration-100 ease-in-out hover:text-black">
-              Email
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/LudovicTuncay" class="body-copy transition-colors duration-100 ease-in-out hover:text-black">
-              GitHub
-            </a>
-          </li>
-          <li>
-            <a href="https://scholar.google.com" class="body-copy transition-colors duration-100 ease-in-out hover:text-black">
-              Google Scholar
-            </a>
-          </li>
+          {externalLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="body-copy transition-colors duration-100 ease-in-out hover:text-black"
+                target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+                rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </div>

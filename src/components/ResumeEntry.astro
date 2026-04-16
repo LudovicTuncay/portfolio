@@ -13,14 +13,19 @@ type Props = {
 const { title, subtitle, bullets, date, location, href } = Astro.props;
 ---
 
-<article class="grid gap-5 py-6 md:grid-cols-[minmax(0,1fr)_190px_30px] md:gap-8">
-  <div class="space-y-3">
+<article
+  class:list={[
+    "grid gap-5 py-4 md:items-start md:gap-5",
+    href
+      ? "md:grid-cols-[minmax(0,1fr)_190px_30px]"
+      : "md:grid-cols-[minmax(0,1fr)_190px]",
+  ]}
+>
+  <div class="space-y-5">
     <h4 class="entry-title">{title}</h4>
-    <p class="body-copy">{subtitle}</p>
-    <ul class="body-copy ml-[1.1rem] list-disc space-y-1.5">
-      {bullets.map((bullet) => (
-        <li>{bullet}</li>
-      ))}
+    <p class="meta-copy" set:html={subtitle}></p>
+    <ul class="body-copy list-disc space-y-0 pl-[1.7rem]">
+      {bullets.map((bullet) => <li>{bullet}</li>)}
     </ul>
   </div>
 
@@ -29,7 +34,11 @@ const { title, subtitle, bullets, date, location, href } = Astro.props;
     <p class="meta-copy">{location}</p>
   </div>
 
-  <div class="md:justify-self-end">
-    {href ? <ButtonLink href={href} label="Open" muted icon /> : null}
-  </div>
+  {
+    href && (
+      <div class="md:justify-self-end">
+        <ButtonLink href={href} label="Open" muted icon external />
+      </div>
+    )
+  }
 </article>

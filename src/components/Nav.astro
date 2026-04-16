@@ -15,7 +15,7 @@ const { currentPath = "/" } = Astro.props;
     </a>
 
     <nav aria-label="Primary" class="justify-self-start md:justify-self-center">
-      <ul role="list" class="ui-copy flex flex-wrap items-center gap-x-6 gap-y-3 md:gap-x-8">
+      <ul role="list" class="flex flex-wrap items-center gap-x-6 gap-y-3 md:gap-x-8">
         {navItems.map((item) => {
           const active = currentPath === item.href;
           return (
@@ -23,8 +23,10 @@ const { currentPath = "/" } = Astro.props;
               <a
                 href={item.href}
                 class:list={[
-                  "transition-colors duration-100 ease-in-out hover:text-[var(--color-ink-muted)]",
-                  active && "accent-glow"
+                  "body-copy transition-colors duration-100 ease-in-out",
+                  active
+                    ? "!font-[800] !italic !text-[var(--color-ink)] underline accent-glow"
+                    : "hover:text-[var(--color-ink)]"
                 ]}
                 aria-current={active ? "page" : undefined}
               >
@@ -36,25 +38,34 @@ const { currentPath = "/" } = Astro.props;
       </ul>
     </nav>
 
-    <a
-      href="mailto:ludovic@example.com"
-      class="ui-copy inline-flex items-center gap-2 justify-self-start md:justify-self-end"
-    >
-      <svg
-        aria-hidden="true"
-        class="h-[14px] w-[14px]"
-        viewBox="0 0 16 16"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+    <div class="justify-self-start md:justify-self-end">
+      <button
+        type="button"
+        class="button-shell button-primary button-icon"
+        aria-label="Toggle theme"
+        title="Toggle theme"
       >
-        <path
-          d="M2 4H14V12H2V4ZM2 4L8 8.5L14 4"
+        <svg
+          aria-hidden="true"
+          class="h-[24px] w-[24px]"
+          viewBox="0 0 24 24"
+          fill="none"
           stroke="currentColor"
-          stroke-width="1.4"
-          stroke-linecap="square"
-        />
-      </svg>
-      <span>Contact me</span>
-    </a>
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2" />
+          <path d="M12 20v2" />
+          <path d="m4.93 4.93 1.41 1.41" />
+          <path d="m17.66 17.66 1.41 1.41" />
+          <path d="M2 12h2" />
+          <path d="M20 12h2" />
+          <path d="m6.34 17.66-1.41 1.41" />
+          <path d="m19.07 4.93-1.41 1.41" />
+        </svg>
+      </button>
+    </div>
   </div>
 </header>

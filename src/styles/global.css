@@ -2,6 +2,7 @@
 @import "@fontsource/cormorant-garamond/latin-700-italic.css";
 @import "@fontsource/atkinson-hyperlegible-next/latin-500.css";
 @import "@fontsource/atkinson-hyperlegible-next/latin-500-italic.css";
+@import "@fontsource/atkinson-hyperlegible-next/latin-700.css";
 @import "@fontsource/atkinson-hyperlegible-next/latin-800.css";
 @import "@fontsource/atkinson-hyperlegible-next/latin-800-italic.css";
 @import "@fontsource/lilex/latin-600.css";
@@ -15,7 +16,7 @@
   --color-bg: #ffffff;
   --color-surface: #ffffff;
   --color-ink: #000000;
-  --color-ink-muted: rgb(0 0 0 / 55%);
+  --color-ink-muted: #737373;
   --color-accent: #fdc700;
   --color-divider: rgb(0 0 0 / 15%);
   --color-shadow-muted: rgb(0 0 0 / 40%);
@@ -28,6 +29,7 @@
   --text-entry-title-size: 18px;
   --text-body-size: 18px;
   --text-ui-size: 14px;
+  --text-footer-copyright-size: 13px;
 
   --shadow-glow-display: 0 0 40px #fdc700;
   --shadow-button-primary: -4px 4px 10px rgb(253 199 0 / 40%);
@@ -54,9 +56,9 @@
   --stack-gap-lg: 32px;
   --button-padding-x: 16px;
   --button-padding-y: 16px;
-  --icon-button-size: 30px;
-  --icon-button-padding: 10px;
-  --icon-arrow-size: 10px;
+  --icon-button-size: 40px;
+  --icon-button-padding: 8px;
+  --icon-arrow-size: 24px;
 
   --motion-fast: 100ms;
   --motion-default: 100ms;
@@ -135,11 +137,16 @@ ol[role="list"] {
   background: rgb(253 199 0 / 35%);
 }
 
+/* ── Layout ── */
+
 .page-container {
   width: min(var(--container-max), calc(100% - (2 * clamp(24px, 8vw, var(--container-pad-x)))));
   margin-inline: auto;
 }
 
+/* ── Typography ── */
+
+/* H1 — Display Title */
 .display-title {
   font-family: var(--font-display);
   font-size: clamp(3rem, 7vw, var(--text-display-xl-size));
@@ -147,26 +154,32 @@ ol[role="list"] {
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.025em;
+  color: var(--color-ink);
 }
 
+/* H2 — Section Title */
 .section-title {
   font-family: var(--font-display);
   font-size: clamp(2.25rem, 5vw, var(--text-display-lg-size));
   font-style: italic;
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.2;
   letter-spacing: -0.025em;
+  color: var(--color-ink);
 }
 
+/* Card Title — Atkinson ExtraBold */
 .entry-title {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: var(--text-entry-title-size);
   font-style: normal;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.2;
   letter-spacing: -0.01em;
+  color: var(--color-ink);
 }
 
+/* Body */
 .body-copy {
   color: var(--color-ink-muted);
   font-family: var(--font-body);
@@ -177,6 +190,7 @@ ol[role="list"] {
   letter-spacing: -0.01em;
 }
 
+/* Body Emphasis — ExtraBold Italic */
 .body-emphasis {
   color: var(--color-ink-muted);
   font-family: var(--font-body);
@@ -187,16 +201,18 @@ ol[role="list"] {
   letter-spacing: -0.01em;
 }
 
+/* Location / Meta — Medium Italic */
 .meta-copy {
   color: var(--color-ink-muted);
   font-family: var(--font-body);
-  font-size: 18px;
+  font-size: var(--text-body-size);
   font-style: italic;
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.01em;
 }
 
+/* UI Label */
 .ui-copy {
   font-family: var(--font-ui);
   font-size: var(--text-ui-size);
@@ -205,9 +221,23 @@ ol[role="list"] {
   line-height: 1.15;
 }
 
+/* Footer Copyright — Atkinson Bold 13px */
+.footer-copyright {
+  font-family: var(--font-body);
+  font-size: var(--text-footer-copyright-size);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+
+/* ── Effects ── */
+
 .accent-glow {
   text-shadow: var(--shadow-glow-display);
 }
+
+/* ── Buttons ── */
 
 .button-shell {
   display: inline-flex;
@@ -232,6 +262,12 @@ ol[role="list"] {
   transform: translate(2px, -2px);
 }
 
+.button-shell.button-icon {
+  width: var(--icon-button-size);
+  height: var(--icon-button-size);
+  padding: 0;
+}
+
 .button-primary {
   color: var(--color-ink);
   background: var(--color-surface);
@@ -254,6 +290,8 @@ ol[role="list"] {
   box-shadow: var(--shadow-button-muted-hover);
 }
 
+/* ── Utilities ── */
+
 .divider-line {
   border-top: 1px solid var(--color-divider);
 }
@@ -261,6 +299,8 @@ ol[role="list"] {
 .visually-muted {
   color: var(--color-ink-muted);
 }
+
+/* ── Reduced Motion ── */
 
 @media (prefers-reduced-motion: reduce) {
   html {
