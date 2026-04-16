@@ -231,6 +231,25 @@ ol[role="list"] {
   color: var(--color-ink);
 }
 
+.footer-link {
+  color: var(--color-ink-muted);
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--text-body-size);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  transition:
+    color var(--motion-default) var(--ease-standard),
+    font-weight var(--motion-default) var(--ease-standard);
+}
+
+.footer-link:hover {
+  color: var(--color-ink);
+  font-weight: 800;
+}
+
 /* ── Effects ── */
 
 .accent-glow {
