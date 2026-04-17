@@ -70,4 +70,12 @@ For detailed schemas and conventions, refer to [CLAUDE.md](./CLAUDE.md).
 
 ## 📄 License
 
-MIT © [Ludovic Tuncay](https://github.com/ludovictuncay)
+The source code in this repository is licensed under the [MIT License](./LICENSE).
+
+Images, photographs, logos, and other media assets are excluded from the MIT
+License unless a different license is explicitly stated for a specific file.
+Those assets remain © 2026 Ludovic Tuncay, all rights reserved. This includes
+the current assets in `src/assets/hero-portrait.png`, `public/lkt-logo.svg`,
+and `public/favicon.svg`, as well as photography served from Cloudflare R2.
+
+See [COPYRIGHT](./COPYRIGHT) for the media carve-out.

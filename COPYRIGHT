@@ -1,0 +1,20 @@
+Copyright (c) 2026 Ludovic Tuncay. All rights reserved.
+
+The MIT License in the root LICENSE file applies to the source code and other
+material in this repository unless a different license is stated for a
+specific file.
+
+The following assets are excluded from the MIT License and are not licensed for
+reuse, redistribution, modification, or commercial use without prior written
+permission:
+
+- `src/assets/hero-portrait.png`
+- `public/lkt-logo.svg`
+- `public/favicon.svg`
+- Any photographs, images, or other media assets added to this repository in
+  the future, unless a different license is explicitly stated for a specific
+  file
+- Any photography referenced by album descriptors for this site and served from
+  Cloudflare R2
+
+No trademark, publicity, or endorsement rights are granted.
