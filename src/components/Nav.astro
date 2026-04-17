@@ -8,64 +8,66 @@ type Props = {
 const { currentPath = "/" } = Astro.props;
 ---
 
-<header class="page-container pt-8 md:pt-10">
-  <div class="grid grid-cols-1 items-center gap-5 md:grid-cols-[32px_1fr_auto] md:gap-8">
-    <a href="/" aria-label="LKT home" class="justify-self-start">
-      <img src="/lkt-logo.svg" alt="LKT" class="h-auto w-8" />
-    </a>
+<header class="sticky top-0 z-50 border-b border-[var(--color-divider)] bg-[rgb(255_255_255_/_0.88)] backdrop-blur-md">
+  <div class="page-container">
+    <div class="grid grid-cols-1 items-center gap-4 py-3 md:grid-cols-[32px_1fr_auto] md:gap-8 md:py-4">
+      <a href="/" aria-label="LKT home" class="justify-self-start">
+        <img src="/lkt-logo.svg" alt="LKT" class="h-auto w-8" />
+      </a>
 
-    <nav aria-label="Primary" class="justify-self-start md:justify-self-center">
-      <ul role="list" class="flex flex-wrap items-center gap-x-6 gap-y-3 md:gap-x-8">
-        {navItems.map((item) => {
-          const active = currentPath === item.href;
-          return (
-            <li>
-              <a
-                href={item.href}
-                class:list={[
-                  "body-copy transition-colors duration-100 ease-in-out",
-                  active
-                    ? "!font-[800] !italic !text-[var(--color-ink)] underline accent-glow"
-                    : "hover:text-[var(--color-ink)]"
-                ]}
-                aria-current={active ? "page" : undefined}
-              >
-                {item.label}
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
+      <nav aria-label="Primary" class="justify-self-start md:justify-self-center">
+        <ul role="list" class="flex flex-wrap items-center gap-x-6 gap-y-3 md:gap-x-8">
+          {navItems.map((item) => {
+            const active = currentPath === item.href;
+            return (
+              <li>
+                <a
+                  href={item.href}
+                  class:list={[
+                    "body-copy transition-colors duration-100 ease-in-out",
+                    active
+                      ? "!font-[800] !italic !text-[var(--color-ink)] underline accent-glow"
+                      : "hover:text-[var(--color-ink)]"
+                  ]}
+                  aria-current={active ? "page" : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
 
-    <div class="justify-self-start md:justify-self-end">
-      <button
-        type="button"
-        class="button-shell button-primary button-icon"
-        aria-label="Toggle theme"
-        title="Toggle theme"
-      >
-        <svg
-          aria-hidden="true"
-          class="h-[24px] w-[24px]"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+      <div class="justify-self-start md:justify-self-end">
+        <button
+          type="button"
+          class="button-shell button-primary button-icon"
+          aria-label="Toggle theme"
+          title="Toggle theme"
         >
-          <circle cx="12" cy="12" r="4" />
-          <path d="M12 2v2" />
-          <path d="M12 20v2" />
-          <path d="m4.93 4.93 1.41 1.41" />
-          <path d="m17.66 17.66 1.41 1.41" />
-          <path d="M2 12h2" />
-          <path d="M20 12h2" />
-          <path d="m6.34 17.66-1.41 1.41" />
-          <path d="m19.07 4.93-1.41 1.41" />
-        </svg>
-      </button>
+          <svg
+            aria-hidden="true"
+            class="h-[24px] w-[24px]"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2" />
+            <path d="M12 20v2" />
+            <path d="m4.93 4.93 1.41 1.41" />
+            <path d="m17.66 17.66 1.41 1.41" />
+            <path d="M2 12h2" />
+            <path d="M20 12h2" />
+            <path d="m6.34 17.66-1.41 1.41" />
+            <path d="m19.07 4.93-1.41 1.41" />
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 </header>

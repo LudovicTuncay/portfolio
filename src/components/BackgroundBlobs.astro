@@ -5,6 +5,10 @@
   <span class="blob blob-a"></span>
   <span class="blob blob-b"></span>
   <span class="blob blob-c"></span>
+  <span class="blob blob-d"></span>
+  <span class="blob blob-e"></span>
+  <span class="blob blob-f"></span>
+  <span class="blob blob-g"></span>
 </div>
 
 <style>
@@ -18,10 +22,10 @@
 
   .blob {
     position: absolute;
-    width: 55vmax;
-    height: 55vmax;
+    width: 20vmax;
+    height: 20vmax;
     border-radius: 50%;
-    filter: blur(90px);
+    filter: blur(45px);
     mix-blend-mode: multiply;
     will-change: transform;
   }
@@ -29,63 +33,148 @@
   .blob-a {
     background: radial-gradient(
       circle,
-      rgb(253 199 0 / 62%) 0%,
+      rgb(253 199 0 / 16%) 0%,
       rgb(253 199 0 / 0%) 65%
     );
-    top: -15vmax;
+    top: -10vmax;
     left: -10vmax;
-    animation: drift-a 17s ease-in-out infinite;
+    animation: drift-a 19s ease-in-out infinite;
   }
 
   .blob-b {
     background: radial-gradient(
       circle,
-      rgb(255 155 61 / 55%) 0%,
+      rgb(255 155 61 / 14%) 0%,
       rgb(255 155 61 / 0%) 65%
     );
-    bottom: -20vmax;
-    right: -15vmax;
-    animation: drift-b 23s ease-in-out infinite;
+    top: 5%;
+    right: -8vmax;
+    animation: drift-b 25s ease-in-out infinite;
   }
 
   .blob-c {
     background: radial-gradient(
       circle,
-      rgb(255 184 112 / 50%) 0%,
+      rgb(255 184 112 / 12%) 0%,
       rgb(255 184 112 / 0%) 65%
     );
+    top: 40%;
+    left: -6vmax;
+    animation: drift-c 14s ease-in-out infinite;
+  }
+
+  .blob-d {
+    background: radial-gradient(
+      circle,
+      rgb(253 199 0 / 14%) 0%,
+      rgb(253 199 0 / 0%) 65%
+    );
     top: 30%;
-    left: 35%;
-    animation: drift-c 13s ease-in-out infinite;
+    left: 40%;
+    animation: drift-d 22s ease-in-out infinite;
+  }
+
+  .blob-e {
+    background: radial-gradient(
+      circle,
+      rgb(255 155 61 / 13%) 0%,
+      rgb(255 155 61 / 0%) 65%
+    );
+    top: 55%;
+    right: 8%;
+    animation: drift-e 16s ease-in-out infinite;
+  }
+
+  .blob-f {
+    background: radial-gradient(
+      circle,
+      rgb(253 199 0 / 13%) 0%,
+      rgb(253 199 0 / 0%) 65%
+    );
+    bottom: -10vmax;
+    left: 10%;
+    animation: drift-f 29s ease-in-out infinite;
+  }
+
+  .blob-g {
+    background: radial-gradient(
+      circle,
+      rgb(255 184 112 / 14%) 0%,
+      rgb(255 184 112 / 0%) 65%
+    );
+    bottom: -6vmax;
+    right: -6vmax;
+    animation: drift-g 11s ease-in-out infinite;
   }
 
   @keyframes drift-a {
     0%   { transform: translate3d(0, 0, 0) scale(1); }
     18%  { transform: translate3d(22vw, 6vh, 0) scale(1.15); }
-    36%  { transform: translate3d(34vw, 24vh, 0) scale(1.3); }
-    55%  { transform: translate3d(18vw, 32vh, 0) scale(1.05); }
-    74%  { transform: translate3d(-6vw, 16vh, 0) scale(1.2); }
-    88%  { transform: translate3d(4vw, 4vh, 0) scale(0.95); }
+    36%  { transform: translate3d(30vw, 24vh, 0) scale(1.3); }
+    55%  { transform: translate3d(14vw, 30vh, 0) scale(1.05); }
+    74%  { transform: translate3d(-4vw, 14vh, 0) scale(1.2); }
+    88%  { transform: translate3d(4vw, 4vh, 0) scale(0.9); }
     100% { transform: translate3d(0, 0, 0) scale(1); }
   }
 
   @keyframes drift-b {
     0%   { transform: translate3d(0, 0, 0) scale(1.1); }
-    15%  { transform: translate3d(-14vw, -10vh, 0) scale(0.95); }
-    32%  { transform: translate3d(-30vw, -16vh, 0) scale(1.05); }
-    50%  { transform: translate3d(-24vw, -32vh, 0) scale(1.25); }
-    68%  { transform: translate3d(-6vw, -28vh, 0) scale(1); }
-    84%  { transform: translate3d(6vw, -10vh, 0) scale(0.9); }
+    15%  { transform: translate3d(-14vw, 10vh, 0) scale(0.95); }
+    32%  { transform: translate3d(-26vw, 18vh, 0) scale(1.05); }
+    50%  { transform: translate3d(-22vw, 30vh, 0) scale(1.25); }
+    68%  { transform: translate3d(-6vw, 24vh, 0) scale(1); }
+    84%  { transform: translate3d(4vw, 8vh, 0) scale(0.88); }
     100% { transform: translate3d(0, 0, 0) scale(1.1); }
   }
 
   @keyframes drift-c {
-    0%   { transform: translate3d(-16vw, 12vh, 0) scale(0.85); }
-    17%  { transform: translate3d(2vw, 20vh, 0) scale(1.1); }
-    34%  { transform: translate3d(22vw, 4vh, 0) scale(1.25); }
-    51%  { transform: translate3d(14vw, -18vh, 0) scale(0.95); }
-    68%  { transform: translate3d(-10vw, -16vh, 0) scale(1.15); }
-    85%  { transform: translate3d(-22vw, -2vh, 0) scale(1); }
-    100% { transform: translate3d(-16vw, 12vh, 0) scale(0.85); }
+    0%   { transform: translate3d(-4vw, 10vh, 0) scale(0.85); }
+    17%  { transform: translate3d(10vw, 20vh, 0) scale(1.1); }
+    34%  { transform: translate3d(26vw, 6vh, 0) scale(1.25); }
+    51%  { transform: translate3d(18vw, -18vh, 0) scale(0.95); }
+    68%  { transform: translate3d(-2vw, -14vh, 0) scale(1.15); }
+    85%  { transform: translate3d(-12vw, -2vh, 0) scale(1); }
+    100% { transform: translate3d(-4vw, 10vh, 0) scale(0.85); }
+  }
+
+  @keyframes drift-d {
+    0%   { transform: translate3d(0, 0, 0) scale(1); }
+    14%  { transform: translate3d(-18vw, 12vh, 0) scale(1.2); }
+    30%  { transform: translate3d(-24vw, -8vh, 0) scale(0.9); }
+    47%  { transform: translate3d(-8vw, -22vh, 0) scale(1.1); }
+    62%  { transform: translate3d(14vw, -18vh, 0) scale(1.25); }
+    78%  { transform: translate3d(22vw, 4vh, 0) scale(1); }
+    92%  { transform: translate3d(10vw, 14vh, 0) scale(0.92); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+  }
+
+  @keyframes drift-e {
+    0%   { transform: translate3d(0, 0, 0) scale(0.95); }
+    19%  { transform: translate3d(-20vw, -12vh, 0) scale(1.2); }
+    38%  { transform: translate3d(-28vw, 4vh, 0) scale(1.05); }
+    54%  { transform: translate3d(-12vw, 22vh, 0) scale(1.3); }
+    71%  { transform: translate3d(4vw, 14vh, 0) scale(0.88); }
+    87%  { transform: translate3d(2vw, -6vh, 0) scale(1.1); }
+    100% { transform: translate3d(0, 0, 0) scale(0.95); }
+  }
+
+  @keyframes drift-f {
+    0%   { transform: translate3d(0, 0, 0) scale(1.05); }
+    16%  { transform: translate3d(18vw, -14vh, 0) scale(0.9); }
+    33%  { transform: translate3d(28vw, -26vh, 0) scale(1.2); }
+    49%  { transform: translate3d(10vw, -32vh, 0) scale(1.3); }
+    66%  { transform: translate3d(-10vw, -22vh, 0) scale(1); }
+    82%  { transform: translate3d(-16vw, -6vh, 0) scale(0.95); }
+    100% { transform: translate3d(0, 0, 0) scale(1.05); }
+  }
+
+  @keyframes drift-g {
+    0%   { transform: translate3d(0, 0, 0) scale(1); }
+    15%  { transform: translate3d(-14vw, -8vh, 0) scale(1.15); }
+    31%  { transform: translate3d(-26vw, -20vh, 0) scale(0.88); }
+    48%  { transform: translate3d(-32vw, -6vh, 0) scale(1.25); }
+    64%  { transform: translate3d(-18vw, 8vh, 0) scale(1.05); }
+    82%  { transform: translate3d(-4vw, 2vh, 0) scale(0.92); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
   }
 </style>

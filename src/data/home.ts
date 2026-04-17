@@ -51,7 +51,7 @@ export const publications: ResumeEntry[] = [
     title:
       "BEST-RQ-2: Contextualize-Then-Predict, a Two-Step Approach for Self-Supervised Audio Representations",
     subtitle:
-      "<strong>Ludovic Tuncay</strong>, Etienne Labbé, Thomas Pellegrini",
+      "<strong>Ludovic TUNCAY</strong>, Etienne LABBÉ, Thomas PELLEGRINI",
     bullets: [
       "Decoupled contextualization and masked-target prediction in BEST-RQ while retaining frozen random-projection targets.",
       "Replaced the original Conformer encoder with a Vision Transformer backbone.",
@@ -65,7 +65,7 @@ export const publications: ResumeEntry[] = [
     title:
       "Audio-JEPA: Joint-Embedding Predictive Architecture for Audio Representation Learning",
     subtitle:
-      "<strong>Ludovic Tuncay</strong>, Etienne Labbé, Emmanouil Benetos, Thomas Pellegrini",
+      "<strong>Ludovic TUNCAY</strong>, Etienne LABBÉ, Emmanouil BENETOS, Thomas PELLEGRINI",
     bullets: [
       "First open-source adaptation of the JEPA paradigm to generic audio.",
       "Adapted I-JEPA to audio, predicting masked spectrogram patches using a Vision Transformer backbone.",
@@ -79,7 +79,7 @@ export const publications: ResumeEntry[] = [
     title:
       "Hierarchical Label Propagation: A Model-Size-Dependent Performance Booster for AudioSet Tagging",
     subtitle:
-      "<strong>Ludovic Tuncay</strong>, Etienne Labbé, Thomas Pellegrini",
+      "<strong>Ludovic TUNCAY</strong>, Etienne LABBÉ, Thomas PELLEGRINI",
     bullets: [
       "Propagated labels up AudioSet's ontology, affecting more than 500k audio clips and adding 800k labels across 109 classes.",
       "Demonstrated performance gains on CNN and transformer architectures, with consistent improvements on FSD50K.",
@@ -98,14 +98,14 @@ export const experiences: ResumeEntry[] = [
     bullets: [
       "Adapted the I-JEPA paradigm to the audio domain, creating Audio-JEPA.",
       "Converted and trained the model on audio data, achieving state-of-the-art performance with limited resources.",
-      "Supervised by Emmanouil Benetos.",
+      "Supervised by Emmanouil BENETOS.",
     ],
     date: "Oct. 2024 - Mar. 2025",
     location: "London, UK",
   },
   {
     title: "Teaching Assistant in Mathematics Related Courses",
-    subtitle: "Université de Toulouse",
+    subtitle: "Université Toulouse III — Paul Sabatier",
     bullets: [
       "Led weekly exercise sessions and office hours for 20-30+ students in each course.",
       "Bachelor-level courses: Linear Algebra, Data Analysis, Introduction to Analysis.",
@@ -129,9 +129,9 @@ export const experiences: ResumeEntry[] = [
   {
     title: "Statistical Cohort Study Intern",
     subtitle:
-      "Department of Mathematics, Université Toulouse III -- Paul Sabatier",
+      "Department of Mathematics, Université Toulouse III — Paul Sabatier",
     bullets: [
-      "Conducted statistical analysis of student academic trajectories at UT3 -- PS.",
+      "Conducted statistical analysis of student academic trajectories at UT3 — PS.",
       "Developed and presented results through an interactive dashboard.",
     ],
     date: "Jun. 2021 - Aug. 2021",
@@ -156,7 +156,7 @@ export const education: ResumeEntry[] = [
     bullets: [
       "Recipient of the French Ministry of Higher Education Doctoral Scholarship (2023-2026).",
       "Research area: Self-supervised learning of generic audio representations.",
-      "Supervised by Thomas Pellegrini.",
+      "Supervised by Thomas PELLEGRINI.",
     ],
     date: "Oct. 2023 - Present",
     location: "Toulouse, France",
@@ -164,7 +164,7 @@ export const education: ResumeEntry[] = [
   {
     title:
       "Master of Science (M.Sc.) in Mathematics and Computer Science for Artificial Intelligence",
-    subtitle: "Université Toulouse III -- Paul Sabatier",
+    subtitle: "Université Toulouse III — Paul Sabatier",
     bullets: [
       "Valedictorian; graduated top of class with high honors.",
       "ANITI Master's Scholarship recipient (2021-2022, 2022-2023).",
@@ -176,7 +176,7 @@ export const education: ResumeEntry[] = [
     title:
       "Bachelor of Science (B.Sc.) in Computer Science & B.Sc. in Mathematics",
     subtitle:
-      "Université Toulouse III -- Paul Sabatier & Université de Montréal",
+      "Université Toulouse III — Paul Sabatier & Université de Montréal",
     bullets: [
       "Graduated with honors in the Computer Science B.Sc. and with highest honors in the B.Sc. Mathematics.",
       "Valedictorian in first and second years.",
