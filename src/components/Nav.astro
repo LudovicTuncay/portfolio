@@ -11,13 +11,13 @@ const mobileMenuId = "site-mobile-nav";
 ---
 
 <header
-  class="sticky top-0 z-50 border-b border-[var(--color-divider)] bg-[rgb(255_255_255_/_0.88)] backdrop-blur-md"
+  class="sticky top-0 z-50 border-b border-[var(--color-divider)] bg-[var(--color-nav-surface)] backdrop-blur-md"
   data-site-nav
 >
   <div class="page-container">
     <div class="flex items-center justify-between py-3 md:hidden">
       <a href="/" aria-label="LKT home" class="shrink-0">
-        <img src="/lkt-logo.svg" alt="LKT" class="h-auto w-8" />
+        <img src="/lkt-logo.svg" alt="LKT" class="site-logo h-auto w-8" />
       </a>
 
       <button
@@ -63,7 +63,7 @@ const mobileMenuId = "site-mobile-nav";
                   class:list={[
                     "body-copy block py-3 text-[clamp(1.375rem,5vw,1.75rem)] transition-colors duration-100 ease-in-out",
                     active
-                      ? "!font-[800] !italic !text-[var(--color-ink)] accent-glow"
+                      ? "!font-[800] !italic !text-[var(--color-ink)] nav-accent-glow"
                       : "hover:text-[var(--color-ink)]"
                   ]}
                   data-mobile-nav-link
@@ -84,7 +84,7 @@ const mobileMenuId = "site-mobile-nav";
 
     <div class="hidden items-center gap-8 py-4 md:grid md:grid-cols-[32px_1fr_auto]">
       <a href="/" aria-label="LKT home" class="justify-self-start">
-        <img src="/lkt-logo.svg" alt="LKT" class="h-auto w-8" />
+        <img src="/lkt-logo.svg" alt="LKT" class="site-logo h-auto w-8" />
       </a>
 
       <nav aria-label="Primary" class="justify-self-start md:justify-self-center">
@@ -98,7 +98,7 @@ const mobileMenuId = "site-mobile-nav";
                   class:list={[
                     "body-copy transition-colors duration-100 ease-in-out",
                     active
-                      ? "!font-[800] !italic !text-[var(--color-ink)] underline accent-glow"
+                      ? "!font-[800] !italic !text-[var(--color-ink)] underline nav-accent-glow"
                       : "hover:text-[var(--color-ink)]"
                   ]}
                   aria-current={active ? "page" : undefined}

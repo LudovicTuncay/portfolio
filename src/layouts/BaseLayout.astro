@@ -28,6 +28,56 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <title>{title}</title>
+    <script is:inline>
+      (() => {
+        const storageKey = "portfolio-theme";
+        const root = document.documentElement;
+        const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+        const getStoredTheme = () => {
+          try {
+            const theme = window.localStorage.getItem(storageKey);
+            return theme === "light" || theme === "dark" ? theme : null;
+          } catch {
+            return null;
+          }
+        };
+
+        const applyTheme = (theme) => {
+          root.classList.toggle("dark", theme === "dark");
+          root.dataset.theme = theme;
+          root.style.colorScheme = theme;
+        };
+
+        const getPreferredTheme = () => getStoredTheme() ?? (mediaQuery.matches ? "dark" : "light");
+
+        const setTheme = (theme) => {
+          try {
+            window.localStorage.setItem(storageKey, theme);
+          } catch {}
+
+          applyTheme(theme);
+          window.dispatchEvent(new CustomEvent("themechange", { detail: { theme } }));
+        };
+
+        applyTheme(getPreferredTheme());
+
+        window.__portfolioTheme = {
+          getPreferredTheme,
+          setTheme
+        };
+
+        mediaQuery.addEventListener("change", (event) => {
+          if (getStoredTheme()) {
+            return;
+          }
+
+          const theme = event.matches ? "dark" : "light";
+          applyTheme(theme);
+          window.dispatchEvent(new CustomEvent("themechange", { detail: { theme } }));
+        });
+      })();
+    </script>
   </head>
   <body>
     <BackgroundBlobs />

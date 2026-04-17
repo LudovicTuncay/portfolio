@@ -14,33 +14,123 @@ const { showLabel = false, className = "" } = Astro.props;
     showLabel ? "w-full justify-start gap-3" : "button-icon",
     className
   ]}
-  aria-label="Theme toggle coming soon"
-  title="Theme toggle coming soon"
+  data-theme-toggle
+  aria-pressed="false"
+  aria-label="Switch to dark mode"
+  title="Switch to dark mode"
 >
-  <svg
-    aria-hidden="true"
-    class="h-[24px] w-[24px] shrink-0"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <circle cx="12" cy="12" r="4" />
-    <path d="M12 2v2" />
-    <path d="M12 20v2" />
-    <path d="m4.93 4.93 1.41 1.41" />
-    <path d="m17.66 17.66 1.41 1.41" />
-    <path d="M2 12h2" />
-    <path d="M20 12h2" />
-    <path d="m6.34 17.66-1.41 1.41" />
-    <path d="m19.07 4.93-1.41 1.41" />
-  </svg>
+  <span class="relative flex h-[24px] w-[24px] shrink-0 items-center justify-center" aria-hidden="true">
+    <svg
+      class="theme-toggle__moon h-[24px] w-[24px]"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z" />
+    </svg>
+
+    <svg
+      class="theme-toggle__sun h-[24px] w-[24px]"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2" />
+      <path d="M12 20v2" />
+      <path d="m4.93 4.93 1.41 1.41" />
+      <path d="m17.66 17.66 1.41 1.41" />
+      <path d="M2 12h2" />
+      <path d="M20 12h2" />
+      <path d="m6.34 17.66-1.41 1.41" />
+      <path d="m19.07 4.93-1.41 1.41" />
+    </svg>
+  </span>
 
   {showLabel ? (
-    <span class="ui-copy">Switch to dark mode</span>
+    <span class="ui-copy" data-theme-toggle-label>Switch to dark mode</span>
   ) : (
-    <span class="sr-only">Switch to dark mode</span>
+    <span class="sr-only" data-theme-toggle-label>Switch to dark mode</span>
   )}
 </button>
+
+<script>
+  if (!window.__portfolioThemeToggleInit) {
+    window.__portfolioThemeToggleInit = true;
+
+    const root = document.documentElement;
+    const themeApi = window.__portfolioTheme;
+    const toggleButtons = () => Array.from(document.querySelectorAll("[data-theme-toggle]"));
+
+    const syncButtons = (theme) => {
+      const nextTheme = theme === "dark" ? "light" : "dark";
+      const label = `Switch to ${nextTheme} mode`;
+
+      toggleButtons().forEach((button) => {
+        if (!(button instanceof HTMLButtonElement)) {
+          return;
+        }
+
+        button.dataset.theme = theme;
+        button.setAttribute("aria-pressed", String(theme === "dark"));
+        button.setAttribute("aria-label", label);
+        button.title = label;
+
+        const copy = button.querySelector("[data-theme-toggle-label]");
+        if (copy) {
+          copy.textContent = label;
+        }
+      });
+    };
+
+    const getCurrentTheme = () => root.dataset.theme === "dark" ? "dark" : "light";
+
+    syncButtons(getCurrentTheme());
+
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) {
+        return;
+      }
+
+      const button = target.closest("[data-theme-toggle]");
+      if (!(button instanceof HTMLButtonElement)) {
+        return;
+      }
+
+      const currentTheme = getCurrentTheme();
+      const nextTheme = currentTheme === "dark" ? "light" : "dark";
+      themeApi?.setTheme(nextTheme);
+      syncButtons(nextTheme);
+    });
+
+    window.addEventListener("themechange", (event) => {
+      if (!(event instanceof CustomEvent) || typeof event.detail?.theme !== "string") {
+        syncButtons(getCurrentTheme());
+        return;
+      }
+
+      syncButtons(event.detail.theme);
+    });
+  }
+</script>
+
+<style>
+  [data-theme-toggle] .theme-toggle__sun {
+    display: none;
+  }
+
+  :global(html.dark) [data-theme-toggle] .theme-toggle__moon {
+    display: none;
+  }
+
+  :global(html.dark) [data-theme-toggle] .theme-toggle__sun {
+    display: block;
+  }
+</style>

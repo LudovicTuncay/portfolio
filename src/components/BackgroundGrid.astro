@@ -32,7 +32,6 @@
     --scroll-x: 0px;
     --scroll-y: 0px;
     --grid-size: 24px;
-    --grid-line: rgb(0 0 0 / 10%);
     --reveal-radius: 120px;
 
     position: fixed;
@@ -40,8 +39,8 @@
     z-index: -1;
     pointer-events: none;
     background-image:
-      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+      linear-gradient(to right, var(--color-grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-grid-line) 1px, transparent 1px);
     background-size: var(--grid-size) var(--grid-size);
     background-position: calc(-1 * var(--scroll-x)) calc(-1 * var(--scroll-y));
     -webkit-mask-image: radial-gradient(
