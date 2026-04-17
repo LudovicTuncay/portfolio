@@ -19,10 +19,10 @@ export type ResearchGridItem = {
 export const researchGrid: ResearchGridItem[] = [
   {
     collection: "papers",
-    slug: "audio-jepa",
+    slug: "best-rq-2",
     order: 1,
     variant: "feature",
-    desktop: { span: 8 },
+    desktop: { span: 12 },
     tablet: { span: 6 }
   },
   {
@@ -30,39 +30,39 @@ export const researchGrid: ResearchGridItem[] = [
     slug: "audio-embeddings",
     order: 2,
     variant: "wide",
-    desktop: { span: 4 },
+    desktop: { span: 6 },
     tablet: { span: 6 }
   },
   {
     collection: "papers",
-    slug: "best-rq-2",
+    slug: "audio-jepa",
     order: 3,
-    variant: "compact",
-    desktop: { span: 4 },
-    tablet: { span: 3 }
-  },
-  {
-    collection: "repos",
-    slug: "xares",
-    order: 4,
-    variant: "compact",
-    desktop: { span: 4 },
-    tablet: { span: 3 }
+    variant: "wide",
+    desktop: { span: 6 },
+    tablet: { span: 6 }
   },
   {
     collection: "repos",
     slug: "portfolio",
-    order: 5,
+    order: 4,
     variant: "wide",
-    desktop: { span: 4 },
+    desktop: { span: 12 },
     tablet: { span: 6 }
   },
   {
     collection: "papers",
     slug: "hierarchical-label-propagation",
+    order: 5,
+    variant: "feature",
+    desktop: { span: 8 },
+    tablet: { span: 6 }
+  },
+  {
+    collection: "repos",
+    slug: "hierarchical-label-propagation",
     order: 6,
     variant: "wide",
-    desktop: { span: 12 },
+    desktop: { span: 4 },
     tablet: { span: 6 }
   }
 ];

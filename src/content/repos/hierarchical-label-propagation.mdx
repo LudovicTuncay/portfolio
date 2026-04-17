@@ -1,0 +1,29 @@
+---
+title: "hierarchical-label-propagation"
+description: "Reference implementation of Hierarchical Label Propagation for ontology-consistent AudioSet training labels."
+summary: "A focused research repository for propagating positive labels through the AudioSet hierarchy, so experiments can isolate the effect of cleaner supervision on audio tagging models."
+url: "https://github.com/LudovicTuncay/hierarchical-label-propagation"
+language: "Python"
+topics:
+  - "audio"
+  - "AudioSet"
+  - "data-centric"
+stack:
+  - "Python"
+  - "AudioSet"
+  - "Benchmarking"
+featured: false
+preview:
+  style: "grid"
+  label: "repo · hlp"
+---
+
+This repository contains the implementation used to propagate positive labels upward through the AudioSet ontology before model training. It exists as a separate code artifact because the main contribution is data preparation and evaluation methodology rather than a new model architecture.
+
+Keeping the repository narrow in scope makes the comparison easier to reason about: the experiments focus on what changes when label consistency improves, and how those effects vary with model size.
+
+## What the repo is for
+
+- Reproduce the label propagation pipeline.
+- Keep the preprocessing logic inspectable and reusable.
+- Support comparisons across tagging architectures and benchmark settings.

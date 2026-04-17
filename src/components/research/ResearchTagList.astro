@@ -2,18 +2,26 @@
 type Props = {
   tags: string[];
   tone?: "primary" | "secondary";
+  size?: "default" | "dense";
 };
 
-const { tags, tone = "secondary" } = Astro.props;
+const { tags, tone = "secondary", size = "default" } = Astro.props;
 ---
 
 {
   tags.length > 0 && (
-    <ul role="list" class="flex flex-wrap gap-2">
+    <ul
+      role="list"
+      class:list={[
+        "flex flex-wrap items-start",
+        size === "dense" ? "gap-x-2.5 gap-y-2.5" : "gap-x-3 gap-y-2.5"
+      ]}
+    >
       {tags.map((tag) => (
         <li
           class:list={[
-            "ui-copy border px-2 py-1 lowercase",
+            "ui-copy inline-flex items-center whitespace-nowrap border lowercase leading-none",
+            size === "dense" ? "px-2 py-[0.42rem]" : "px-[0.65rem] py-[0.48rem]",
             tone === "primary"
               ? "border-[var(--color-ink)] text-[var(--color-ink)]"
               : "border-[var(--color-divider)] text-[var(--color-ink-muted)]"
