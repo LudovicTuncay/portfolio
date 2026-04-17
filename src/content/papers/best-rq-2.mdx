@@ -1,0 +1,32 @@
+---
+title: "BEST-RQ-2: Contextualize-Then-Predict, a Two-Step Approach for Self-Supervised Audio Representations"
+authors:
+  - "Ludovic K. Tuncay"
+  - "Etienne Labbé"
+  - "Thomas Pellegrini"
+venue: "Interspeech"
+year: 2025
+status: "under-review"
+summary: "A two-step self-supervised pipeline that separates contextualization from masked-target prediction while keeping frozen random-projection targets."
+tags:
+  - "audio"
+  - "SSL"
+  - "BEST-RQ"
+featured: true
+doi: null
+arxiv: null
+code: "https://github.com/LudovicTuncay/audio-embeddings"
+preview:
+  style: "signal"
+  label: "figure · best-rq-2"
+---
+
+BEST-RQ-2 revisits the BEST-RQ family by explicitly decoupling representation contextualization from prediction. The goal is to keep the simplicity of frozen random targets while improving how the model reasons over surrounding context before the prediction step.
+
+The project replaces the original encoder with a Vision Transformer backbone and evaluates the resulting embeddings on the X-ARES suite. The work focuses on practical improvements that preserve deployment cost while increasing transfer quality.
+
+## Current direction
+
+- Preserve the favorable efficiency profile of BEST-RQ-style pretraining.
+- Test whether decoupling contextualization and prediction improves general-purpose embeddings.
+- Keep the training recipe aligned with the open-source audio-embeddings framework.

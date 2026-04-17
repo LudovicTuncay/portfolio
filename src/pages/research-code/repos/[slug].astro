@@ -1,0 +1,79 @@
+---
+import { getCollection, render } from "astro:content";
+import ResearchExternalLinks from "../../../components/research/ResearchExternalLinks.astro";
+import ResearchPreview from "../../../components/research/ResearchPreview.astro";
+import ResearchTagList from "../../../components/research/ResearchTagList.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const repos = await getCollection("repos");
+
+  return repos.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry }
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const data = entry.data;
+---
+
+<BaseLayout
+  title={`LKT | ${data.title}`}
+  currentPath="/research-code"
+  description={data.summary}
+>
+  <section class="page-container pt-12 md:pt-16">
+    <div class="space-y-8">
+      <a href="/research-code" class="button-shell button-muted">Back to Research &amp; Code</a>
+
+      <article class="space-y-10">
+        <div class="space-y-6">
+          <div class="ui-copy flex flex-wrap items-center gap-3 lowercase text-[var(--color-ink-muted)]">
+            <span class="inline-block h-2.5 w-2.5 rounded-full bg-[var(--color-ink)]"></span>
+            <span>code</span>
+            <span aria-hidden="true">•</span>
+            <span>{entry.id}</span>
+          </div>
+
+          <div class="grid gap-8 xl:grid-cols-[minmax(0,1fr)_18rem] xl:items-start">
+            <div class="space-y-6">
+              <h1 class="font-[var(--font-body)] text-[clamp(2.25rem,5vw,4.25rem)] font-[800] leading-[1.02] tracking-[-0.04em] text-[var(--color-ink)]">
+                {data.title}
+              </h1>
+              <p class="meta-copy max-w-[56rem]">{data.description}</p>
+              <p class="body-copy max-w-[56rem]">{data.summary}</p>
+
+              <div class="space-y-3">
+                <ResearchTagList tags={data.stack} tone="primary" />
+                <ResearchTagList tags={data.topics} />
+              </div>
+
+              <ResearchExternalLinks links={[{ label: "GitHub", href: data.url }]} />
+            </div>
+
+            <div class="space-y-4 border-t border-[var(--color-divider)] pt-4 xl:border-t-0 xl:border-l xl:pl-6 xl:pt-0">
+              <div>
+                <p class="ui-copy text-[var(--color-ink-muted)]">language</p>
+                <p class="entry-title mt-2">{data.language}</p>
+              </div>
+              <div>
+                <p class="ui-copy text-[var(--color-ink-muted)]">stack</p>
+                <p class="entry-title mt-2">{data.stack.join(", ")}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {data.preview && <ResearchPreview preview={data.preview} variant="feature" />}
+
+        <div class="divider-line"></div>
+
+        <div class="space-y-5 [&_h2]:section-title [&_li]:body-copy [&_li]:leading-[1.45] [&_p]:body-copy [&_p]:leading-[1.45] [&_ul]:list-disc [&_ul]:space-y-3 [&_ul]:pl-6">
+          <Content />
+        </div>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

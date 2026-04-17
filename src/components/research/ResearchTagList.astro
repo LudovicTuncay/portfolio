@@ -1,0 +1,27 @@
+---
+type Props = {
+  tags: string[];
+  tone?: "primary" | "secondary";
+};
+
+const { tags, tone = "secondary" } = Astro.props;
+---
+
+{
+  tags.length > 0 && (
+    <ul role="list" class="flex flex-wrap gap-2">
+      {tags.map((tag) => (
+        <li
+          class:list={[
+            "ui-copy border px-2 py-1 lowercase",
+            tone === "primary"
+              ? "border-[var(--color-ink)] text-[var(--color-ink)]"
+              : "border-[var(--color-divider)] text-[var(--color-ink-muted)]"
+          ]}
+        >
+          #{tag}
+        </li>
+      ))}
+    </ul>
+  )
+}

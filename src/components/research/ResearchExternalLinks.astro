@@ -1,0 +1,26 @@
+---
+import ButtonLink from "../ButtonLink.astro";
+
+type LinkItem = {
+  label: string;
+  href?: string | null;
+  muted?: boolean;
+};
+
+type Props = {
+  links: LinkItem[];
+};
+
+const { links } = Astro.props;
+const visibleLinks = links.filter((link) => Boolean(link.href));
+---
+
+{
+  visibleLinks.length > 0 && (
+    <div class="flex flex-wrap gap-4">
+      {visibleLinks.map((link) => (
+        <ButtonLink href={link.href!} label={link.label} muted={link.muted} external />
+      ))}
+    </div>
+  )
+}

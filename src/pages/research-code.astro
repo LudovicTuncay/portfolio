@@ -1,5 +1,28 @@
 ---
+import { getCollection } from "astro:content";
+import ResearchBentoGrid from "../components/research/ResearchBentoGrid.astro";
+import ResearchCard from "../components/research/ResearchCard.astro";
+import { researchGrid } from "../data/research-grid";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const [papers, repos] = await Promise.all([getCollection("papers"), getCollection("repos")]);
+
+const papersById = new Map(papers.map((entry) => [entry.id, entry]));
+const reposById = new Map(repos.map((entry) => [entry.id, entry]));
+
+const orderedItems = researchGrid
+  .slice()
+  .sort((left, right) => left.order - right.order)
+  .map((layout) => {
+    const entry =
+      layout.collection === "papers" ? papersById.get(layout.slug) : reposById.get(layout.slug);
+
+    if (!entry) {
+      throw new Error(`Missing research entry for ${layout.collection}/${layout.slug}`);
+    }
+
+    return { entry, layout };
+  });
 ---
 
 <BaseLayout
@@ -7,14 +30,47 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   currentPath="/research-code"
   description="Research and code page for Ludovic K. TUNCAY."
 >
-  <section class="page-container pt-16">
-    <div class="max-w-[44rem] space-y-5">
-      <h1 class="display-title accent-glow">Research &amp; Code</h1>
-      <p class="body-copy">
-        This page is the next build target. The shared layout and design system are already in
-        place, so papers, repositories, and filters can now be implemented against real content
-        collections.
-      </p>
+  <section class="page-container pt-12 md:pt-16">
+    <div class="space-y-10 md:space-y-12">
+      <div class="max-w-[50rem] space-y-5">
+        <h1 class="display-title accent-glow">Research &amp; Code</h1>
+        <p class="body-copy max-w-[42rem]">
+          Papers, benchmarks, and open-source systems around my work in self-supervised audio
+          representation learning. The grid is intentionally manual so each project can move,
+          expand, or shrink as the body of work grows.
+        </p>
+      </div>
+
+      <ResearchBentoGrid>
+        {orderedItems.map(({ entry, layout }) =>
+          entry.collection === "papers" ? (
+            <ResearchCard
+              collection="papers"
+              slug={entry.id}
+              title={entry.data.title}
+              summary={entry.data.summary}
+              tags={entry.data.tags}
+              authors={entry.data.authors}
+              venue={entry.data.venue}
+              year={entry.data.year}
+              status={entry.data.status}
+              preview={entry.data.preview}
+              layout={layout}
+            />
+          ) : (
+            <ResearchCard
+              collection="repos"
+              slug={entry.id}
+              title={entry.data.title}
+              description={entry.data.description}
+              topics={entry.data.topics}
+              stack={entry.data.stack}
+              preview={entry.data.preview}
+              layout={layout}
+            />
+          )
+        )}
+      </ResearchBentoGrid>
     </div>
   </section>
 </BaseLayout>

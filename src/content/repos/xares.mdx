@@ -1,0 +1,29 @@
+---
+title: "xares"
+description: "Benchmark suite for evaluating audio encoders across speech, music, and environmental sound tasks."
+summary: "A compact evaluation harness for comparing general-purpose audio representations on a diverse set of downstream tasks instead of optimizing for a single dataset."
+url: "https://github.com/LudovicTuncay/xares"
+language: "Python"
+topics:
+  - "audio"
+  - "evaluation"
+  - "transfer"
+stack:
+  - "Python"
+  - "Benchmarking"
+  - "CLI"
+featured: true
+preview:
+  style: "grid"
+  label: "suite · xares"
+---
+
+X-ARES is used to test whether an audio encoder transfers beyond the setting it was trained on. The benchmark groups together tasks spanning speech, music, and environmental sound, which makes it easier to compare representations with a single evaluation vocabulary.
+
+On this site, X-ARES matters because several research projects are measured through it. It acts as the shared evaluation surface that makes paper-to-paper comparisons much easier to interpret.
+
+## Why I keep it separate
+
+- Benchmarking evolves at a different pace than model training code.
+- The suite provides a clearer contract for transfer quality.
+- It makes new encoder variants easier to compare rigorously.

@@ -1,0 +1,32 @@
+---
+title: "Hierarchical Label Propagation: A Model-Size-Dependent Performance Booster for AudioSet Tagging"
+authors:
+  - "Ludovic K. Tuncay"
+  - "Etienne Labbé"
+  - "Thomas Pellegrini"
+venue: "ICASSP"
+year: 2025
+status: "published"
+summary: "A data-centric correction pass over AudioSet labels that propagates ontology-consistent positives and improves downstream tagging performance."
+tags:
+  - "audio"
+  - "AudioSet"
+  - "benchmarking"
+featured: false
+doi: null
+arxiv: "https://arxiv.org/abs/2503.21826"
+code: "https://github.com/LudovicTuncay/hierarchical-label-propagation"
+preview:
+  style: "grid"
+  label: "figure · hlp"
+---
+
+AudioSet contains a rich ontology, but the labels do not always respect parent-child consistency. Hierarchical Label Propagation corrects this mismatch by propagating positive labels upward through the ontology, which produces a cleaner supervision signal without collecting new annotations.
+
+The method improves performance across multiple audio tagging architectures, with especially visible gains for smaller models. Beyond the main AudioSet experiments, the work also shows that better label consistency improves transfer to FSD50K.
+
+## Why it matters
+
+- It improves results through data quality, not model scale.
+- It is easy to integrate into existing audio tagging pipelines.
+- It highlights how ontology-aware preprocessing can change model behavior materially.

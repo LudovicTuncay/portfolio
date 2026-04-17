@@ -1,0 +1,33 @@
+---
+title: "Audio-JEPA: Joint-Embedding Predictive Architecture for Audio Representation Learning"
+authors:
+  - "Ludovic K. Tuncay"
+  - "Etienne Labbé"
+  - "Emmanouil Benetos"
+  - "Thomas Pellegrini"
+venue: "ICME"
+year: 2025
+status: "published"
+summary: "A JEPA-style pretraining recipe for generic audio embeddings using masked spectrogram prediction with a ViT backbone."
+tags:
+  - "audio"
+  - "SSL"
+  - "JEPA"
+featured: true
+doi: null
+arxiv: "https://arxiv.org/abs/2507.02915"
+code: "https://github.com/LudovicTuncay/audio-embeddings"
+preview:
+  style: "waveform"
+  label: "figure · audio-jepa"
+---
+
+Audio-JEPA adapts the Joint-Embedding Predictive Architecture paradigm to generic audio representation learning. Instead of reconstructing waveform samples, the model predicts latent representations of masked spectrogram patches, which keeps the objective closer to semantic structure than to low-level signal recovery.
+
+The implementation uses a Vision Transformer backbone and is trained on unlabeled AudioSet clips. The resulting encoder was evaluated on X-ARES across speech, music, and environmental sound tasks, with competitive transfer performance despite a smaller training budget than common speech-centric baselines.
+
+## What this project contributes
+
+- A straightforward audio translation of JEPA that stays close to the original design.
+- An open implementation meant to be easy to inspect, reproduce, and extend.
+- A practical baseline for future work on audio predictive pretraining objectives.

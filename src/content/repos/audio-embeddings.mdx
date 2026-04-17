@@ -1,0 +1,30 @@
+---
+title: "audio-embeddings"
+description: "Training and evaluation framework for self-supervised audio encoders, including Audio-JEPA and BEST-RQ-style experiments."
+summary: "A research codebase built to keep audio SSL experimentation reproducible: shared training entrypoints, benchmark evaluation, and model recipes for multiple embedding families."
+url: "https://github.com/LudovicTuncay/audio-embeddings"
+language: "Python"
+topics:
+  - "audio"
+  - "SSL"
+  - "research"
+stack:
+  - "PyTorch"
+  - "Lightning"
+  - "Hydra"
+  - "ViT"
+featured: true
+preview:
+  style: "terminal"
+  label: "framework · audio-embeddings"
+---
+
+This repository is the main working codebase behind several ongoing research directions in self-supervised audio representation learning. It is designed around repeatable experiments rather than one-off scripts: configurations stay explicit, model families share conventions, and evaluation can be run against the same benchmark suite.
+
+The project currently covers Audio-JEPA, RQA-JEPA, BEST-RQ, and BEST-RQ-2 style runs. It also serves as the bridge between paper ideas and benchmark results, which keeps implementation details close to the claims made in the papers.
+
+## What is inside
+
+- Shared training and evaluation workflows.
+- Configuration-driven experimentation with Hydra.
+- A single home for model variants and benchmark comparisons.

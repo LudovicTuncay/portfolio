@@ -1,0 +1,116 @@
+---
+import type { ResearchCardVariant } from "../../data/research-grid";
+import type { ResearchPreview as PreviewData } from "../../data/research";
+
+type Props = {
+  preview: PreviewData;
+  variant?: ResearchCardVariant;
+};
+
+const { preview, variant = "wide" } = Astro.props;
+
+const frameClass =
+  variant === "feature"
+    ? "min-h-[16rem] md:min-h-[22rem]"
+    : "min-h-[10rem] md:min-h-[12rem]";
+---
+
+<div
+  class:list={[
+    "relative overflow-hidden border border-dashed border-[var(--color-divider)] bg-[color-mix(in_srgb,var(--color-surface)_92%,var(--color-accent)_8%)] p-4",
+    frameClass
+  ]}
+>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(253,199,0,0.12),transparent_52%)]"></div>
+
+  {
+    preview.style === "waveform" && (
+      <div class="relative flex h-full items-center justify-center">
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 320 96"
+          class="h-[5.5rem] w-[16rem] text-[var(--color-ink-muted)] md:h-[6.5rem] md:w-[18rem]"
+          fill="none"
+        >
+          <path
+            d="M8 48h10m6 0h4v-4h4v8h4V40h4v16h4V36h4v24h4V28h4v40h4V24h4v48h4V20h4v56h4V18h4v60h4V22h4v52h4V26h4v44h4V30h4v36h4V34h4v28h4V38h4v20h4V42h4v12h4V46h12"
+            stroke="currentColor"
+            stroke-width="3"
+            stroke-linecap="square"
+          />
+        </svg>
+      </div>
+    )
+  }
+
+  {
+    preview.style === "terminal" && (
+      <div class="relative flex h-full flex-col justify-between">
+        <div class="flex gap-2">
+          <span class="h-2.5 w-2.5 rounded-full bg-[var(--color-accent)]"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-[color-mix(in_srgb,var(--color-ink)_20%,transparent)]"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-[color-mix(in_srgb,var(--color-ink)_10%,transparent)]"></span>
+        </div>
+        <div class="space-y-2 font-[var(--font-ui)] text-[13px] text-[var(--color-ink-muted)]">
+          <div class="w-[78%] border-b border-dashed border-[var(--color-divider)] pb-1">
+            train model=audio-jepa
+          </div>
+          <div class="w-[62%] border-b border-dashed border-[var(--color-divider)] pb-1">
+            eval suite=xares
+          </div>
+          <div class="w-[48%] border-b border-dashed border-[var(--color-divider)] pb-1">
+            ckpt=best-rq2
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  {
+    preview.style === "grid" && (
+      <div class="relative flex h-full items-center justify-center">
+        <div class="grid w-full max-w-[18rem] grid-cols-4 gap-2">
+          {Array.from({ length: 16 }).map((_, index) => (
+            <div
+              class:list={[
+                "aspect-square border border-dashed",
+                index % 5 === 0 || index % 7 === 0
+                  ? "border-[var(--color-ink)] bg-[color-mix(in_srgb,var(--color-accent)_15%,transparent)]"
+                  : "border-[var(--color-divider)] bg-transparent"
+              ]}
+            />
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  {
+    preview.style === "signal" && (
+      <div class="relative flex h-full items-center justify-center">
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 300 120"
+          class="h-[6rem] w-[16rem] text-[var(--color-ink-muted)]"
+          fill="none"
+        >
+          <path
+            d="M10 62c18 0 18-28 36-28s18 52 36 52 18-64 36-64 18 76 36 76 18-52 36-52 18 16 36 16"
+            stroke="currentColor"
+            stroke-width="3"
+          />
+          <circle cx="46" cy="34" r="4" fill="currentColor"></circle>
+          <circle cx="118" cy="22" r="4" fill="currentColor"></circle>
+          <circle cx="190" cy="98" r="4" fill="currentColor"></circle>
+          <circle cx="262" cy="62" r="4" fill="currentColor"></circle>
+        </svg>
+      </div>
+    )
+  }
+
+  {
+    preview.label && (
+      <p class="ui-copy absolute bottom-3 left-4 text-[var(--color-ink-muted)]">{preview.label}</p>
+    )
+  }
+</div>
