@@ -19,12 +19,16 @@
   --color-ink: #000000;
   --color-ink-muted: #737373;
   --color-accent: #fdc700;
+  --color-accent-secondary: #ff9b3d;
   --color-divider: rgb(0 0 0 / 15%);
   --color-grid-line: rgb(0 0 0 / 10%);
   --color-shadow-muted: rgb(0 0 0 / 40%);
   --color-shadow-accent-soft: rgb(253 199 0 / 40%);
   --color-shadow-accent-mid: rgb(253 199 0 / 50%);
   --color-shadow-accent-strong: rgb(253 199 0 / 100%);
+  --color-shadow-secondary-soft: rgb(255 155 61 / 40%);
+  --color-shadow-secondary-mid: rgb(255 155 61 / 50%);
+  --color-shadow-secondary-strong: rgb(255 155 61 / 100%);
 
   --text-display-xl-size: 64px;
   --text-display-lg-size: 48px;
@@ -37,6 +41,8 @@
   --shadow-glow-nav: 0 0 18px rgb(253 199 0 / 70%);
   --shadow-button-primary: -4px 4px 10px rgb(253 199 0 / 40%);
   --shadow-button-primary-hover: -6px 6px 10px rgb(253 199 0 / 100%);
+  --shadow-button-secondary: -4px 4px 10px rgb(255 155 61 / 40%);
+  --shadow-button-secondary-hover: -6px 6px 10px rgb(255 155 61 / 100%);
   --shadow-button-muted: -4px 4px 10px rgb(0 0 0 / 40%);
   --shadow-button-muted-hover: -6px 6px 10px rgb(253 199 0 / 50%);
 
@@ -85,10 +91,15 @@ html.dark {
   --color-shadow-accent-soft: rgb(253 199 0 / 44%);
   --color-shadow-accent-mid: rgb(253 199 0 / 60%);
   --color-shadow-accent-strong: rgb(253 199 0 / 88%);
+  --color-shadow-secondary-soft: rgb(255 155 61 / 44%);
+  --color-shadow-secondary-mid: rgb(255 155 61 / 60%);
+  --color-shadow-secondary-strong: rgb(255 155 61 / 88%);
   --shadow-glow-display: 0 0 40px rgb(253 199 0 / 64%);
   --shadow-glow-nav: 0 0 18px rgb(253 199 0 / 88%);
   --shadow-button-primary: -4px 4px 10px rgb(253 199 0 / 44%);
   --shadow-button-primary-hover: -6px 6px 10px rgb(253 199 0 / 88%);
+  --shadow-button-secondary: -4px 4px 10px rgb(255 155 61 / 44%);
+  --shadow-button-secondary-hover: -6px 6px 10px rgb(255 155 61 / 88%);
   --shadow-button-muted: -4px 4px 10px rgb(244 239 226 / 22%);
   --shadow-button-muted-hover: -6px 6px 10px rgb(253 199 0 / 52%);
 }
