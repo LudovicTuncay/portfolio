@@ -360,6 +360,39 @@ html.dark .site-logo {
   box-shadow: var(--shadow-button-muted-hover);
 }
 
+/* ── Tag chips ── */
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 4px 6px;
+}
+
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  border: 1px solid;
+  padding: 3px 6px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+.tag-chip-strong {
+  border-color: var(--color-ink);
+  color: var(--color-ink);
+}
+
+.tag-chip-muted {
+  border-color: var(--color-divider);
+  color: var(--color-ink-muted);
+  text-transform: lowercase;
+}
+
 /* ── Utilities ── */
 
 .divider-line {

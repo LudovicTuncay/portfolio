@@ -170,26 +170,20 @@ const authorsWithSelf =
                 ))}
               </p>
               {props.tags.length > 0 && (
-                <ul role="list" class="flex flex-wrap items-start gap-2">
+                <ul role="list" class="tag-list">
                   {props.tags.map((tag) => (
-                    <li class="ui-copy inline-flex items-center whitespace-nowrap border border-[var(--color-divider)] px-2 py-[0.42rem] lowercase leading-none text-[var(--color-ink-muted)]">
-                      #{tag}
-                    </li>
+                    <li class="tag-chip tag-chip-muted">#{tag}</li>
                   ))}
                 </ul>
               )}
             </>
           ) : (
-            <div class="flex flex-wrap items-start gap-2">
+            <div class="tag-list">
               {props.stack.map((tag) => (
-                <span class="ui-copy inline-flex items-center whitespace-nowrap border border-[var(--color-ink)] px-2 py-[0.42rem] leading-none text-[var(--color-ink)]">
-                  {tag}
-                </span>
+                <span class="tag-chip tag-chip-strong">{tag}</span>
               ))}
               {props.topics.map((tag) => (
-                <span class="ui-copy inline-flex items-center whitespace-nowrap border border-[var(--color-divider)] px-2 py-[0.42rem] lowercase leading-none text-[var(--color-ink-muted)]">
-                  #{tag}
-                </span>
+                <span class="tag-chip tag-chip-muted">#{tag}</span>
               ))}
             </div>
           )
