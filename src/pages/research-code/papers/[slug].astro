@@ -2,7 +2,6 @@
 import { getCollection, render } from "astro:content";
 import ResearchExternalLinks from "../../../components/research/ResearchExternalLinks.astro";
 import ResearchPreview from "../../../components/research/ResearchPreview.astro";
-import ResearchTagList from "../../../components/research/ResearchTagList.astro";
 import { paperStatusLabels } from "../../../data/research";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 
@@ -48,7 +47,6 @@ const data = entry.data;
               <p class="meta-copy max-w-[56rem]">{data.authors.join(", ")}</p>
               <p class="body-copy max-w-[56rem]">{data.summary}</p>
 
-              <ResearchTagList tags={data.tags} />
               <ResearchExternalLinks
                 links={[
                   { label: "ArXiv", href: data.arxiv },

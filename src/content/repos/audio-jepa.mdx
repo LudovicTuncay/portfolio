@@ -1,0 +1,29 @@
+---
+title: "audio-jepa"
+description: "Audio-JEPA implementation with pretraining configs, checkpoints, and evaluation pipelines."
+summary: "A focused implementation of Audio-JEPA for learning generic audio embeddings with masked spectrogram prediction and a Vision Transformer backbone."
+url: "https://github.com/LudovicTuncay/audio-embeddings"
+language: "Python"
+topics:
+  - "audio"
+  - "SSL"
+  - "spectrogram"
+stack:
+  - "PyTorch"
+  - "Config"
+  - "ViT"
+featured: true
+preview:
+  style: "terminal"
+  label: "repo · audio-jepa"
+---
+
+Audio-JEPA is the implementation artifact behind the corresponding publication. It keeps the pretraining recipe, model configuration, and evaluation path close to the paper so the experimental setup is easier to inspect.
+
+The code currently lives inside the broader audio-embeddings repository, where it shares training and benchmark utilities with related audio representation learning experiments.
+
+## What is inside
+
+- Audio-JEPA model and pretraining configuration.
+- Evaluation hooks for generic audio embedding benchmarks.
+- Reproducible training entrypoints for the paper experiments.

@@ -22,7 +22,7 @@ export const researchGrid: ResearchGridItem[] = [
     slug: "best-rq-2",
     order: 1,
     variant: "feature",
-    desktop: { span: 12 },
+    desktop: { span: 8 },
     tablet: { span: 6 }
   },
   {
@@ -30,7 +30,7 @@ export const researchGrid: ResearchGridItem[] = [
     slug: "audio-embeddings",
     order: 2,
     variant: "wide",
-    desktop: { span: 6 },
+    desktop: { span: 4 },
     tablet: { span: 6 }
   },
   {
@@ -43,8 +43,16 @@ export const researchGrid: ResearchGridItem[] = [
   },
   {
     collection: "repos",
-    slug: "portfolio",
+    slug: "audio-jepa",
     order: 4,
+    variant: "wide",
+    desktop: { span: 6 },
+    tablet: { span: 6 }
+  },
+  {
+    collection: "repos",
+    slug: "portfolio",
+    order: 5,
     variant: "wide",
     desktop: { span: 12 },
     tablet: { span: 6 }
@@ -52,15 +60,23 @@ export const researchGrid: ResearchGridItem[] = [
   {
     collection: "papers",
     slug: "hierarchical-label-propagation",
-    order: 5,
+    order: 6,
     variant: "feature",
-    desktop: { span: 8 },
+    desktop: { span: 12 },
+    tablet: { span: 6 }
+  },
+  {
+    collection: "repos",
+    slug: "xares",
+    order: 7,
+    variant: "wide",
+    desktop: { span: 4 },
     tablet: { span: 6 }
   },
   {
     collection: "repos",
     slug: "hierarchical-label-propagation",
-    order: 6,
+    order: 8,
     variant: "wide",
     desktop: { span: 4 },
     tablet: { span: 6 }

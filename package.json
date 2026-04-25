@@ -19,6 +19,7 @@
     "@fontsource/atkinson-hyperlegible-next": "^5.2.7",
     "@fontsource/cormorant-garamond": "^5.2.11",
     "@fontsource/lilex": "^5.2.1",
+    "@lucide/astro": "^1.11.0",
     "@tailwindcss/vite": "^4.2.1",
     "astro": "^6.0.4",
     "svelte": "^5.53.12",

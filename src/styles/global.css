@@ -6,6 +6,7 @@
 @import "@fontsource/atkinson-hyperlegible-next/latin-800.css";
 @import "@fontsource/atkinson-hyperlegible-next/latin-800-italic.css";
 @import "@fontsource/lilex/latin-600.css";
+@import "@fontsource/lilex/latin-700.css";
 @import "tailwindcss";
 
 :root {
@@ -226,6 +227,24 @@ html.dark .site-logo {
   color: var(--color-ink);
 }
 
+.research-paper-title {
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+
+.research-repo-title {
+  color: var(--color-ink);
+  font-family: var(--font-ui);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
 /* Body */
 .body-copy {
   color: var(--color-ink-muted);
@@ -383,8 +402,8 @@ html.dark .site-logo {
 }
 
 .tag-chip-strong {
-  border-color: var(--color-ink);
-  color: var(--color-ink);
+  border-color: var(--color-divider);
+  color: var(--color-ink-muted);
 }
 
 .tag-chip-muted {
