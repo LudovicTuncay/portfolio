@@ -62,12 +62,12 @@ export const researchGrid: ResearchGridItem[] = [
     slug: "hierarchical-label-propagation",
     order: 6,
     variant: "feature",
-    desktop: { span: 12 },
+    desktop: { span: 8 },
     tablet: { span: 6 }
   },
   {
     collection: "repos",
-    slug: "xares",
+    slug: "hierarchical-label-propagation",
     order: 7,
     variant: "wide",
     desktop: { span: 4 },
@@ -75,10 +75,10 @@ export const researchGrid: ResearchGridItem[] = [
   },
   {
     collection: "repos",
-    slug: "hierarchical-label-propagation",
+    slug: "xares",
     order: 8,
     variant: "wide",
-    desktop: { span: 4 },
+    desktop: { span: 12 },
     tablet: { span: 6 }
   }
 ];

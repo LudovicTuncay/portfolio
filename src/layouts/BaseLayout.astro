@@ -33,6 +33,11 @@ const {
         const storageKey = "portfolio-theme";
         const root = document.documentElement;
         const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+        const params = new URLSearchParams(window.location.search);
+
+        if (params.has("portfolio-preview")) {
+          root.dataset.portfolioPreview = "true";
+        }
 
         const getStoredTheme = () => {
           try {

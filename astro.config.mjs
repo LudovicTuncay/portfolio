@@ -12,6 +12,9 @@ import cloudflare from '@astrojs/cloudflare';
 // https://astro.build/config
 export default defineConfig({
   integrations: [svelte(), mdx()],
+  devToolbar: {
+    enabled: false
+  },
 
   vite: {
     plugins: [tailwindcss()]

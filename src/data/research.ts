@@ -35,5 +35,4 @@ export const researchCollectionLabels: Record<ResearchCollectionKey, string> = {
   repos: "code"
 };
 
-export const getResearchDetailHref = (collection: ResearchCollectionKey, slug: string) =>
-  `/research-code/${collection}/${slug}`;
+export const getPaperDetailHref = (slug: string) => `/research-code/papers/${slug}`;

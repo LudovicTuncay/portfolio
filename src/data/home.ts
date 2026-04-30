@@ -36,12 +36,12 @@ export const introActions: IntroAction[] = [
 ];
 
 export const aboutParagraphs = [
-  "Born and raised in Toulouse, France, I was drawn to curious and scientific minds from an early age. This led me to pursue a bachelor in computer science and an M.Sc. in mathematics for artificial intelligence. Ultimately, I am interested in all things machine learning, especially the parts that still resist neat explanations.",
-  "Today I am a PhD student in machine learning at IRIT and ANITI, where I focus on audio representation learning and robust learning systems.",
+  "I was born and raised in Toulouse, France, and have been drawn to science, mathematics, and computing for as long as I can remember. I first studied computer science, then moved toward mathematics for artificial intelligence, where I found the questions that still interest me most: how models learn, what their representations contain, and why some methods generalize better than others.",
+  "I am now a PhD student in machine learning at IRIT and ANITI. My work focuses on audio representation learning, robust evaluation, and research tools that make experiments easier to reproduce and understand.",
 ];
 
 export const researchParagraph =
-  "My thesis focuses on making models learn general audio embeddings, with compact numerical representations of sounds and spoken language. I am interested in self-supervised learning, interpretable methods, and reliable evaluation. I keep my research as open as possible by publishing code alongside papers and documenting results clearly.";
+  "My thesis focuses on self-supervised learning for general audio embeddings: compact representations that transfer across speech, music, and environmental sound. Through Audio-JEPA and BEST-RQ-2, I study how pretraining objectives shape what an encoder learns and how those representations can be made useful beyond a single dataset. I also work on evaluation and benchmarking, including contributions to audio benchmarks that compare models fairly across many tasks and datasets. More broadly, I am interested in dataset quality: my work includes label correction for AudioSet, and I am currently exploring dataset curation in another domain outside of the audio domain. I try to keep these research threads connected through open-source systems that make experiments easier to reproduce, compare, and extend.";
 
 export const photographyParagraph =
   "Photography gives me a different way of paying attention. I am especially interested in street scenes, visual contrasts, and the tension between documentary detail and mood. It complements research well: it slows observation down and keeps me attentive to composition, light, and unexpected structure.";

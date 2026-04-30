@@ -1,12 +1,15 @@
 ---
 import type { ResearchCardVariant } from "../../data/research-grid";
-import type { ResearchCollectionKey, ResearchPreview as PreviewData } from "../../data/research";
+import type {
+    ResearchCollectionKey,
+    ResearchPreview as PreviewData,
+} from "../../data/research";
 
 type Props = {
-  preview: PreviewData;
-  variant?: ResearchCardVariant;
-  collection?: ResearchCollectionKey;
-  slug?: string;
+    preview: PreviewData;
+    variant?: ResearchCardVariant;
+    collection?: ResearchCollectionKey;
+    slug?: string;
 };
 
 const { preview, variant = "wide", collection, slug } = Astro.props;
@@ -15,224 +18,442 @@ const isRepo = collection === "repos";
 const isPortfolio = isRepo && slug === "portfolio";
 
 const frameClass =
-  variant === "feature"
-    ? isPaper
-      ? "min-h-[8rem] md:h-full md:min-h-[12rem]"
-      : "min-h-[9rem] md:h-full md:min-h-[11rem]"
-    : isPaper
-      ? "min-h-[7rem] md:min-h-[9rem]"
-      : isPortfolio
-        ? "min-h-[10rem] md:min-h-[12rem]"
-        : "min-h-[7rem] md:min-h-[8rem]";
+    variant === "feature"
+        ? isPaper
+            ? "min-h-[8rem] md:h-full md:min-h-[12rem]"
+            : "min-h-[9rem] md:h-full md:min-h-[11rem]"
+        : isPaper
+          ? "min-h-[7rem] md:min-h-[9rem]"
+          : isPortfolio
+            ? "min-h-[12.5rem] md:min-h-[14.75rem]"
+            : "min-h-[7rem] md:min-h-[8rem]";
 ---
 
 <div
-  class:list={[
-    "relative flex w-full flex-col overflow-hidden",
-    isPaper
-      ? "bg-transparent p-0"
-      : "border border-[var(--color-divider)] bg-[color-mix(in_srgb,var(--color-surface)_94%,var(--card-accent,var(--color-accent))_6%)] p-4",
-    frameClass
-  ]}
+    class:list={[
+        "relative flex w-full flex-col overflow-hidden",
+        isPaper
+            ? "bg-transparent p-0"
+            : isPortfolio
+              ? "bg-transparent p-0"
+              : "border border-[var(--color-divider)] bg-[color-mix(in_srgb,var(--color-surface)_94%,var(--card-accent,var(--color-accent))_6%)] p-4",
+        frameClass,
+    ]}
 >
-  {!isPaper && (
-    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,color-mix(in_srgb,var(--card-accent,var(--color-accent))_10%,transparent),transparent_58%)]"></div>
-  )}
-
-  <div class="relative flex flex-1 items-center justify-center">
     {
-      isPaper && preview.style === "waveform" && (
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 320 150"
-          class="h-[8rem] w-full max-w-[18rem] text-[var(--card-accent,var(--color-accent))]"
-          fill="none"
-        >
-          <path
-            d="M24 126V82M44 126V54M64 126V96M84 126V36M104 126V72M124 126V18M144 126V64M164 126V30M184 126V84M204 126V44M224 126V22M244 126V70M264 126V38M284 126V90"
-            stroke="currentColor"
-            stroke-width="2"
-          />
-          <path
-            d="M20 126H292"
-            stroke="var(--color-divider)"
-            stroke-width="1"
-          />
-        </svg>
-      )
+        !isPaper && !isPortfolio && (
+            <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,color-mix(in_srgb,var(--card-accent,var(--color-accent))_10%,transparent),transparent_58%)]" />
+        )
     }
 
-    {
-      isPaper && preview.style === "signal" && (
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 300 140"
-          class="h-[8rem] w-full max-w-[18rem] text-[var(--color-ink-muted)]"
-          fill="none"
-        >
-          <path
-            d="M18 74c20 0 20-32 40-32s20 58 40 58 20-72 40-72 20 84 40 84 20-56 40-56 20 18 40 18"
-            stroke="currentColor"
-            stroke-width="3"
-            stroke-linecap="round"
-          />
-          <circle cx="58" cy="42" r="4" fill="var(--card-accent,var(--color-accent))" stroke="var(--color-ink)" stroke-width="1.5" />
-          <circle cx="138" cy="28" r="4" fill="var(--card-accent,var(--color-accent))" stroke="var(--color-ink)" stroke-width="1.5" />
-          <circle cx="218" cy="56" r="4" fill="var(--card-accent,var(--color-accent))" stroke="var(--color-ink)" stroke-width="1.5" />
-          <circle cx="274" cy="74" r="4" fill="var(--card-accent,var(--color-accent))" stroke="var(--color-ink)" stroke-width="1.5" />
-        </svg>
-      )
-    }
+    <div class="relative flex flex-1 items-center justify-center">
+        {
+            isPaper && preview.style === "waveform" && (
+                <svg
+                    aria-hidden="true"
+                    viewBox="0 0 320 150"
+                    class="h-[8rem] w-full max-w-[18rem] text-[var(--card-accent,var(--color-accent))]"
+                    fill="none"
+                >
+                    <path
+                        d="M24 126V82M44 126V54M64 126V96M84 126V36M104 126V72M124 126V18M144 126V64M164 126V30M184 126V84M204 126V44M224 126V22M244 126V70M264 126V38M284 126V90"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    />
+                    <path
+                        d="M20 126H292"
+                        stroke="var(--color-divider)"
+                        stroke-width="1"
+                    />
+                </svg>
+            )
+        }
+
+        {
+            isPaper && preview.style === "signal" && (
+                <svg
+                    aria-hidden="true"
+                    viewBox="0 0 300 140"
+                    class="h-[8rem] w-full max-w-[18rem] text-[var(--color-ink-muted)]"
+                    fill="none"
+                >
+                    <path
+                        d="M18 74c20 0 20-32 40-32s20 58 40 58 20-72 40-72 20 84 40 84 20-56 40-56 20 18 40 18"
+                        stroke="currentColor"
+                        stroke-width="3"
+                        stroke-linecap="round"
+                    />
+                    <circle
+                        cx="58"
+                        cy="42"
+                        r="4"
+                        fill="var(--card-accent,var(--color-accent))"
+                        stroke="var(--color-ink)"
+                        stroke-width="1.5"
+                    />
+                    <circle
+                        cx="138"
+                        cy="28"
+                        r="4"
+                        fill="var(--card-accent,var(--color-accent))"
+                        stroke="var(--color-ink)"
+                        stroke-width="1.5"
+                    />
+                    <circle
+                        cx="218"
+                        cy="56"
+                        r="4"
+                        fill="var(--card-accent,var(--color-accent))"
+                        stroke="var(--color-ink)"
+                        stroke-width="1.5"
+                    />
+                    <circle
+                        cx="274"
+                        cy="74"
+                        r="4"
+                        fill="var(--card-accent,var(--color-accent))"
+                        stroke="var(--color-ink)"
+                        stroke-width="1.5"
+                    />
+                </svg>
+            )
+        }
+
+        {
+            isPaper && preview.style === "grid" && (
+                <div class="grid w-full max-w-[12rem] grid-cols-4 gap-2">
+                    {Array.from({ length: 16 }).map((_, index) => (
+                        <div
+                            class:list={[
+                                "aspect-square border",
+                                index % 5 === 0 || index % 7 === 0
+                                    ? "border-[var(--color-accent-secondary)] bg-[color-mix(in_srgb,var(--color-accent)_28%,transparent)]"
+                                    : "border-[var(--color-divider)] bg-transparent",
+                            ]}
+                        />
+                    ))}
+                </div>
+            )
+        }
+
+        {
+            isPortfolio && (
+                <div class="relative flex min-h-[12rem] w-full items-center justify-center py-1 md:min-h-[14.5rem]">
+                    <div class="relative w-full max-w-[42rem]">
+                        <div class="portfolio-browser-mockup relative isolate aspect-[16/10] w-[84%] overflow-hidden rounded-[0.85rem] border border-[color-mix(in_srgb,var(--color-divider)_72%,var(--card-accent,var(--color-accent)))] bg-[color-mix(in_srgb,var(--color-surface)_82%,var(--card-accent,var(--color-accent))_8%)] shadow-[0_14px_30px_rgb(0_0_0_/_14%)] [clip-path:inset(0_round_0.85rem)] [contain:paint]">
+                            <div class="flex h-5 items-center gap-1.5 border-b border-[var(--color-divider)] bg-[color-mix(in_srgb,var(--color-surface)_82%,var(--card-accent,var(--color-accent))_8%)] px-2 md:h-6 md:px-2.5">
+                                <span class="h-1.5 w-1.5 rounded-full bg-[#ff6b68]" />
+                                <span class="h-1.5 w-1.5 rounded-full bg-[#f6c85f]" />
+                                <span class="h-1.5 w-1.5 rounded-full bg-[#62c983]" />
+                                <div class="ml-2 flex h-3 flex-1 items-center justify-center rounded bg-[color-mix(in_srgb,var(--color-surface)_86%,var(--color-divider))] font-[var(--font-ui)] text-[5px] text-[var(--color-ink-muted)] md:h-3.5 md:text-[6px]">
+                                    lkt.dev
+                                </div>
+                            </div>
+
+                            <div
+                                class="portfolio-live-frame portfolio-browser-screen absolute bottom-px left-px right-px top-5 overflow-hidden rounded-b-[0.68rem] bg-[var(--color-surface)] [clip-path:inset(0_round_0_0_0.68rem_0.68rem)] [contain:paint] md:top-6"
+                                data-portfolio-live-frame
+                                data-preview-width="1440"
+                                data-preview-height="900"
+                            >
+                                <iframe
+                                    src="/?portfolio-preview=desktop"
+                                    title="Live preview of the portfolio home page in a desktop browser"
+                                    class="portfolio-live-view pointer-events-none absolute left-0 top-0 origin-top-left border-0"
+                                    loading="lazy"
+                                    sandbox="allow-scripts allow-same-origin"
+                                    scrolling="no"
+                                    tabindex="-1"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="portfolio-phone-mockup absolute bottom-[-0.2rem] right-[5%] isolate aspect-[9/19.5] w-[24%] min-w-[5.1rem] max-w-[6rem] overflow-hidden rounded-[1rem] border-2 border-black bg-black shadow-[0_12px_24px_rgb(0_0_0_/_22%)] [clip-path:inset(0_round_1rem)] [contain:paint] md:bottom-[-0.25rem] md:right-[6%] md:max-w-[6.8rem] md:rounded-[1.15rem] md:border-[3px] md:[clip-path:inset(0_round_1.15rem)]">
+                            <div class="absolute inset-x-0 top-0 z-20 h-[1.08rem] border-b border-[var(--color-divider)] bg-[var(--color-surface)] font-[var(--font-ui)] text-[3.7px] font-bold text-[var(--color-ink)] md:h-[1.28rem] md:text-[4.6px]">
+                                <div class="absolute left-[9%] top-1/2 -translate-y-1/2 tracking-normal">
+                                    9:41
+                                </div>
+                                <div class="absolute left-1/2 top-1/2 h-[0.34rem] w-[1.45rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-black md:h-[0.43rem] md:w-[1.75rem]" />
+                                <div class="absolute right-[8%] top-1/2 flex -translate-y-1/2 items-center gap-[0.13rem] md:gap-[0.15rem]">
+                                    <div class="flex h-[0.28rem] items-end gap-px">
+                                        <span class="block h-[0.09rem] w-px rounded-full bg-current" />
+                                        <span class="block h-[0.16rem] w-px rounded-full bg-current" />
+                                        <span class="block h-[0.23rem] w-px rounded-full bg-current" />
+                                        <span class="block h-[0.28rem] w-px rounded-full bg-current" />
+                                    </div>
+                                    <svg
+                                        aria-hidden="true"
+                                        viewBox="0 0 12 8"
+                                        class="h-[0.3rem] w-[0.45rem] fill-none stroke-current stroke-[1.45]"
+                                    >
+                                        <path d="M1 3.1a7.1 7.1 0 0 1 10 0" />
+                                        <path d="M3.4 5.2a3.7 3.7 0 0 1 5.2 0" />
+                                        <path d="M6 7h.01" stroke-linecap="round" />
+                                    </svg>
+                                    <div class="flex items-center">
+                                        <div class="h-[0.25rem] w-[0.48rem] overflow-hidden rounded-[0.08rem] border border-current p-[0.04rem]">
+                                            <span class="block h-full w-[72%] rounded-[0.03rem] bg-current" />
+                                        </div>
+                                        <span class="block h-[0.11rem] w-px rounded-r-full bg-current" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="portfolio-live-frame absolute inset-x-0 bottom-0 top-[1.08rem] overflow-hidden rounded-b-[0.78rem] bg-[var(--color-surface)] [clip-path:inset(0_round_0_0_0.78rem_0.78rem)] [contain:paint] md:top-[1.28rem] md:rounded-b-[0.92rem] md:[clip-path:inset(0_round_0_0_0.92rem_0.92rem)]"
+                                data-portfolio-live-frame
+                                data-preview-width="390"
+                                data-preview-height="845"
+                            >
+                                <iframe
+                                    src="/?portfolio-preview=mobile"
+                                    title="Live preview of the portfolio home page on a mobile phone"
+                                    class="portfolio-live-view pointer-events-none absolute left-0 top-0 origin-top-left border-0"
+                                    loading="lazy"
+                                    sandbox="allow-scripts allow-same-origin"
+                                    scrolling="no"
+                                    tabindex="-1"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+
+        {
+            isRepo && !isPortfolio && (
+                <div class="w-full font-[var(--font-ui)] text-[12px] leading-[1.35] text-[var(--color-ink-muted)]">
+                    <div class="mb-3 flex items-center justify-between border-b border-[var(--color-divider)] pb-2">
+                        <span class="text-[var(--color-ink)]">{slug}/</span>
+                        <span>{preview.label?.split(" · ")[0] ?? "repo"}</span>
+                    </div>
+                    <div class="space-y-1">
+                        {(slug === "hierarchical-label-propagation"
+                            ? [
+                                  "hlp/",
+                                  "taxonomy/",
+                                  "propagation.py",
+                                  "metrics.py",
+                              ]
+                            : ["encoders/", "conf/", "train.py", "eval.py"]
+                        ).map((line, index) => (
+                            <div class="flex items-center gap-2">
+                                <span class="text-[var(--color-divider)]">
+                                    {index === 0 ? "└" : "├"}
+                                </span>
+                                <span>{line}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )
+        }
+
+        {
+            !isPaper && !isRepo && preview.style === "waveform" && (
+                <svg
+                    aria-hidden="true"
+                    viewBox="0 0 320 96"
+                    class="h-[4.5rem] w-[14rem] text-[var(--color-ink-muted)] md:h-[5.5rem] md:w-[18rem]"
+                    fill="none"
+                >
+                    <path
+                        d="M8 48h10m6 0h4v-4h4v8h4V40h4v16h4V36h4v24h4V28h4v40h4V24h4v48h4V20h4v56h4V18h4v60h4V22h4v52h4V26h4v44h4V30h4v36h4V34h4v28h4V38h4v20h4V42h4v12h4V46h12"
+                        stroke="currentColor"
+                        stroke-width="3"
+                        stroke-linecap="square"
+                    />
+                </svg>
+            )
+        }
+
+        {
+            !isPaper && !isRepo && preview.style === "terminal" && (
+                <div class="flex w-full flex-col gap-3">
+                    <div class="flex gap-2">
+                        <span class="h-2.5 w-2.5 rounded-full bg-[var(--card-accent,var(--color-accent))]" />
+                        <span class="h-2.5 w-2.5 rounded-full bg-[color-mix(in_srgb,var(--color-ink)_20%,transparent)]" />
+                        <span class="h-2.5 w-2.5 rounded-full bg-[color-mix(in_srgb,var(--color-ink)_10%,transparent)]" />
+                    </div>
+                    <div class="space-y-1.5 font-[var(--font-ui)] text-[13px] leading-tight text-[var(--color-ink-muted)]">
+                        <div class="w-[78%] border-b border-dashed border-[var(--color-divider)] pb-1">
+                            train model=audio-jepa
+                        </div>
+                        <div class="w-[62%] border-b border-dashed border-[var(--color-divider)] pb-1">
+                            eval suite=xares
+                        </div>
+                        <div class="w-[48%] border-b border-dashed border-[var(--color-divider)] pb-1">
+                            ckpt=best-rq2
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+
+        {
+            !isPaper && !isRepo && preview.style === "grid" && (
+                <div class="grid w-full max-w-[16rem] grid-cols-4 gap-2">
+                    {Array.from({ length: 16 }).map((_, index) => (
+                        <div
+                            class:list={[
+                                "aspect-square border border-dashed",
+                                index % 5 === 0 || index % 7 === 0
+                                    ? "border-[var(--color-ink)] bg-[color-mix(in_srgb,var(--card-accent,var(--color-accent))_18%,transparent)]"
+                                    : "border-[var(--color-divider)] bg-transparent",
+                            ]}
+                        />
+                    ))}
+                </div>
+            )
+        }
+
+        {
+            !isPaper && !isRepo && preview.style === "signal" && (
+                <svg
+                    aria-hidden="true"
+                    viewBox="0 0 300 120"
+                    class="h-[5rem] w-[14rem] text-[var(--color-ink-muted)] md:h-[6rem] md:w-[16rem]"
+                    fill="none"
+                >
+                    <path
+                        d="M10 62c18 0 18-28 36-28s18 52 36 52 18-64 36-64 18 76 36 76 18-52 36-52 18 16 36 16"
+                        stroke="currentColor"
+                        stroke-width="3"
+                    />
+                    <circle
+                        cx="46"
+                        cy="34"
+                        r="4"
+                        fill="var(--card-accent,var(--color-accent))"
+                        stroke="var(--color-ink)"
+                        stroke-width="1.5"
+                    />
+                    <circle
+                        cx="118"
+                        cy="22"
+                        r="4"
+                        fill="var(--card-accent,var(--color-accent))"
+                        stroke="var(--color-ink)"
+                        stroke-width="1.5"
+                    />
+                    <circle
+                        cx="190"
+                        cy="98"
+                        r="4"
+                        fill="var(--card-accent,var(--color-accent))"
+                        stroke="var(--color-ink)"
+                        stroke-width="1.5"
+                    />
+                    <circle
+                        cx="262"
+                        cy="62"
+                        r="4"
+                        fill="var(--card-accent,var(--color-accent))"
+                        stroke="var(--color-ink)"
+                        stroke-width="1.5"
+                    />
+                </svg>
+            )
+        }
+    </div>
 
     {
-      isPaper && preview.style === "grid" && (
-        <div class="grid w-full max-w-[12rem] grid-cols-4 gap-2">
-          {Array.from({ length: 16 }).map((_, index) => (
-            <div
-              class:list={[
-                "aspect-square border",
-                index % 5 === 0 || index % 7 === 0
-                  ? "border-[var(--color-accent-secondary)] bg-[color-mix(in_srgb,var(--color-accent)_28%,transparent)]"
-                  : "border-[var(--color-divider)] bg-transparent"
-              ]}
-            />
-          ))}
-        </div>
-      )
+        preview.label && !isPaper && !isPortfolio && (
+            <p class="relative mt-3 font-[var(--font-ui)] text-[12px] lowercase tracking-[0.05em] text-[var(--color-ink-muted)]">
+                {preview.label}
+            </p>
+        )
     }
-
-    {
-      isPortfolio && (
-        <div class="relative flex min-h-[11rem] w-full items-end justify-center px-2 pt-4">
-          <div class="relative w-[78%] max-w-[22rem] border border-[var(--color-divider)] bg-[var(--color-surface)] p-2 shadow-[var(--shadow-button-muted)]">
-            <div class="mb-2 flex items-center justify-between border-b border-[var(--color-divider)] pb-1.5 font-[var(--font-ui)] text-[9px] text-[var(--color-ink-muted)]">
-              <span>.lkt</span>
-              <span>Home&nbsp;&nbsp;Research&nbsp;&nbsp;Photo</span>
-            </div>
-            <div class="grid grid-cols-[0.9fr_1fr] gap-2">
-              <div class="space-y-1.5">
-                <div class="h-3 w-14 bg-[var(--color-ink)]"></div>
-                <div class="h-2 w-20 bg-[var(--color-divider)]"></div>
-                <div class="h-2 w-16 bg-[var(--color-divider)]"></div>
-                <div class="mt-2 h-4 w-12 border border-[var(--color-ink)]"></div>
-              </div>
-              <div class="h-20 border border-[var(--color-divider)] bg-[color-mix(in_srgb,var(--color-accent)_18%,var(--color-surface))]"></div>
-            </div>
-          </div>
-
-          <div class="absolute bottom-0 right-[6%] h-[8.5rem] w-[4.2rem] rounded-[0.8rem] border-2 border-[var(--color-ink)] bg-[var(--color-surface)] p-1 shadow-[var(--shadow-button-muted)]">
-            <div class="mx-auto mb-1 h-1 w-5 rounded-full bg-[var(--color-ink)]"></div>
-            <div class="h-[6.8rem] border border-[var(--color-divider)] bg-[color-mix(in_srgb,var(--color-accent)_12%,var(--color-surface))] p-1">
-              <div class="mb-1 h-2 w-8 bg-[var(--color-ink)]"></div>
-              <div class="mb-1 h-1.5 w-9 bg-[var(--color-divider)]"></div>
-              <div class="h-8 border border-[var(--color-divider)]"></div>
-            </div>
-          </div>
-        </div>
-      )
-    }
-
-    {
-      isRepo && !isPortfolio && (
-        <div class="w-full font-[var(--font-ui)] text-[12px] leading-[1.35] text-[var(--color-ink-muted)]">
-          <div class="mb-3 flex items-center justify-between border-b border-[var(--color-divider)] pb-2">
-            <span class="text-[var(--color-ink)]">{slug}/</span>
-            <span>{preview.label?.split(" · ")[0] ?? "repo"}</span>
-          </div>
-          <div class="space-y-1">
-            {(slug === "hierarchical-label-propagation"
-                ? ["hlp/", "taxonomy/", "propagation.py", "metrics.py"]
-                : ["encoders/", "conf/", "train.py", "eval.py"]
-            ).map((line, index) => (
-              <div class="flex items-center gap-2">
-                <span class="text-[var(--color-divider)]">{index === 0 ? "└" : "├"}</span>
-                <span>{line}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      )
-    }
-
-    {
-      !isPaper && !isRepo && preview.style === "waveform" && (
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 320 96"
-          class="h-[4.5rem] w-[14rem] text-[var(--color-ink-muted)] md:h-[5.5rem] md:w-[18rem]"
-          fill="none"
-        >
-          <path
-            d="M8 48h10m6 0h4v-4h4v8h4V40h4v16h4V36h4v24h4V28h4v40h4V24h4v48h4V20h4v56h4V18h4v60h4V22h4v52h4V26h4v44h4V30h4v36h4V34h4v28h4V38h4v20h4V42h4v12h4V46h12"
-            stroke="currentColor"
-            stroke-width="3"
-            stroke-linecap="square"
-          />
-        </svg>
-      )
-    }
-
-    {
-      !isPaper && !isRepo && preview.style === "terminal" && (
-        <div class="flex w-full flex-col gap-3">
-          <div class="flex gap-2">
-            <span class="h-2.5 w-2.5 rounded-full bg-[var(--card-accent,var(--color-accent))]" />
-            <span class="h-2.5 w-2.5 rounded-full bg-[color-mix(in_srgb,var(--color-ink)_20%,transparent)]" />
-            <span class="h-2.5 w-2.5 rounded-full bg-[color-mix(in_srgb,var(--color-ink)_10%,transparent)]" />
-          </div>
-          <div class="space-y-1.5 font-[var(--font-ui)] text-[13px] leading-tight text-[var(--color-ink-muted)]">
-            <div class="w-[78%] border-b border-dashed border-[var(--color-divider)] pb-1">train model=audio-jepa</div>
-            <div class="w-[62%] border-b border-dashed border-[var(--color-divider)] pb-1">eval suite=xares</div>
-            <div class="w-[48%] border-b border-dashed border-[var(--color-divider)] pb-1">ckpt=best-rq2</div>
-          </div>
-        </div>
-      )
-    }
-
-    {
-      !isPaper && !isRepo && preview.style === "grid" && (
-        <div class="grid w-full max-w-[16rem] grid-cols-4 gap-2">
-          {Array.from({ length: 16 }).map((_, index) => (
-            <div
-              class:list={[
-                "aspect-square border border-dashed",
-                index % 5 === 0 || index % 7 === 0
-                  ? "border-[var(--color-ink)] bg-[color-mix(in_srgb,var(--card-accent,var(--color-accent))_18%,transparent)]"
-                  : "border-[var(--color-divider)] bg-transparent"
-              ]}
-            />
-          ))}
-        </div>
-      )
-    }
-
-    {
-      !isPaper && !isRepo && preview.style === "signal" && (
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 300 120"
-          class="h-[5rem] w-[14rem] text-[var(--color-ink-muted)] md:h-[6rem] md:w-[16rem]"
-          fill="none"
-        >
-          <path
-            d="M10 62c18 0 18-28 36-28s18 52 36 52 18-64 36-64 18 76 36 76 18-52 36-52 18 16 36 16"
-            stroke="currentColor"
-            stroke-width="3"
-          />
-          <circle cx="46" cy="34" r="4" fill="var(--card-accent,var(--color-accent))" stroke="var(--color-ink)" stroke-width="1.5" />
-          <circle cx="118" cy="22" r="4" fill="var(--card-accent,var(--color-accent))" stroke="var(--color-ink)" stroke-width="1.5" />
-          <circle cx="190" cy="98" r="4" fill="var(--card-accent,var(--color-accent))" stroke="var(--color-ink)" stroke-width="1.5" />
-          <circle cx="262" cy="62" r="4" fill="var(--card-accent,var(--color-accent))" stroke="var(--color-ink)" stroke-width="1.5" />
-        </svg>
-      )
-    }
-  </div>
-
-  {
-    preview.label && !isPaper && (
-      <p class="relative mt-3 font-[var(--font-ui)] text-[12px] lowercase tracking-[0.05em] text-[var(--color-ink-muted)]">
-        {preview.label}
-      </p>
-    )
-  }
 </div>
+
+<script>
+    const applyPortfolioFrameTheme = (iframe) => {
+        if (!(iframe instanceof HTMLIFrameElement)) {
+            return;
+        }
+
+        const theme =
+            document.documentElement.dataset.theme ??
+            (document.documentElement.classList.contains("dark")
+                ? "dark"
+                : "light");
+
+        try {
+            const frameRoot = iframe.contentDocument?.documentElement;
+
+            if (!frameRoot) {
+                return;
+            }
+
+            frameRoot.classList.toggle("dark", theme === "dark");
+            frameRoot.dataset.theme = theme;
+            frameRoot.style.colorScheme = theme;
+        } catch {}
+    };
+
+    const syncPortfolioFrameThemes = () => {
+        document
+            .querySelectorAll("[data-portfolio-live-frame] iframe")
+            .forEach(applyPortfolioFrameTheme);
+    };
+
+    const syncPortfolioLiveFrames = () => {
+        document
+            .querySelectorAll("[data-portfolio-live-frame]")
+            .forEach((frame) => {
+                if (!(frame instanceof HTMLElement)) {
+                    return;
+                }
+
+                const iframe = frame.querySelector("iframe");
+                const previewWidth = Number(frame.dataset.previewWidth);
+                const previewHeight = Number(frame.dataset.previewHeight);
+
+                if (
+                    !(iframe instanceof HTMLIFrameElement) ||
+                    !previewWidth ||
+                    !previewHeight
+                ) {
+                    return;
+                }
+
+                const scale = frame.clientWidth / previewWidth;
+                iframe.style.width = `${previewWidth}px`;
+                iframe.style.height = `${previewHeight}px`;
+                iframe.style.transform = `scale(${scale})`;
+                applyPortfolioFrameTheme(iframe);
+            });
+    };
+
+    syncPortfolioLiveFrames();
+
+    if (!window.__portfolioLiveFrameResizeObserver) {
+        window.__portfolioLiveFrameResizeObserver = new ResizeObserver(
+            syncPortfolioLiveFrames,
+        );
+    }
+
+    document
+        .querySelectorAll("[data-portfolio-live-frame]")
+        .forEach((frame) => {
+            window.__portfolioLiveFrameResizeObserver.observe(frame);
+
+            const iframe = frame.querySelector("iframe");
+
+            if (iframe instanceof HTMLIFrameElement) {
+                iframe.addEventListener("load", () => {
+                    applyPortfolioFrameTheme(iframe);
+                });
+            }
+        });
+
+    window.addEventListener("themechange", syncPortfolioFrameThemes);
+
+    new MutationObserver(syncPortfolioFrameThemes).observe(
+        document.documentElement,
+        {
+            attributes: true,
+            attributeFilter: ["class", "data-theme"],
+        },
+    );
+</script>

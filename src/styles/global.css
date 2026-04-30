@@ -27,7 +27,7 @@
   --color-shadow-accent-soft: rgb(253 199 0 / 40%);
   --color-shadow-accent-mid: rgb(253 199 0 / 50%);
   --color-shadow-accent-strong: rgb(253 199 0 / 100%);
-  --color-shadow-secondary-soft: rgb(255 155 61 / 40%);
+  --color-shadow-secondary-soft: rgb(255 155 61 / 50%);
   --color-shadow-secondary-mid: rgb(255 155 61 / 50%);
   --color-shadow-secondary-strong: rgb(255 155 61 / 100%);
 
@@ -39,6 +39,7 @@
   --text-footer-copyright-size: 13px;
 
   --shadow-glow-display: 0 0 40px #fdc700;
+  --shadow-glow-display-secondary: 0 0 40px rgb(255 155 61 / 100%);
   --shadow-glow-nav: 0 0 18px rgb(253 199 0 / 70%);
   --shadow-button-primary: -4px 4px 10px rgb(253 199 0 / 40%);
   --shadow-button-primary-hover: -6px 6px 10px rgb(253 199 0 / 100%);
@@ -96,6 +97,7 @@ html.dark {
   --color-shadow-secondary-mid: rgb(255 155 61 / 60%);
   --color-shadow-secondary-strong: rgb(255 155 61 / 88%);
   --shadow-glow-display: 0 0 40px rgb(253 199 0 / 64%);
+  --shadow-glow-display-secondary: 0 0 40px rgb(255 155 61 / 100%);
   --shadow-glow-nav: 0 0 18px rgb(253 199 0 / 88%);
   --shadow-button-primary: -4px 4px 10px rgb(253 199 0 / 44%);
   --shadow-button-primary-hover: -6px 6px 10px rgb(253 199 0 / 88%);
@@ -142,6 +144,26 @@ svg {
   max-width: 100%;
 }
 
+.github-mark {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.github-mark-dark {
+  display: none;
+}
+
+html.dark .github-mark-light {
+  display: none;
+}
+
+html.dark .github-mark-dark {
+  display: block;
+}
+
 button,
 input,
 textarea,
@@ -183,6 +205,24 @@ ol[role="list"] {
 
 html.dark .site-logo {
   filter: invert(1);
+}
+
+html[data-portfolio-preview="true"] astro-dev-toolbar {
+  display: none !important;
+}
+
+.portfolio-browser-mockup,
+.portfolio-phone-mockup,
+.portfolio-browser-screen,
+.portfolio-live-frame {
+  transform: translateZ(0);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+html[data-portfolio-preview="true"],
+html[data-portfolio-preview="true"] body {
+  overflow: hidden;
+  pointer-events: none;
 }
 
 /* ── Layout ── */
@@ -243,6 +283,25 @@ html.dark .site-logo {
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.02em;
+}
+
+.research-label {
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-ui-size);
+  font-style: normal;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.research-card-copy,
+.research-card-actions-block,
+.research-interest-stack {
+  --research-card-inner-gap: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--research-card-inner-gap);
 }
 
 /* Body */
@@ -320,6 +379,10 @@ html.dark .site-logo {
 
 .accent-glow {
   text-shadow: var(--shadow-glow-display);
+}
+
+.accent-glow-secondary {
+  text-shadow: var(--shadow-glow-display-secondary);
 }
 
 .nav-accent-glow {

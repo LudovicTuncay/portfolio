@@ -2,7 +2,7 @@
 import type { ResearchGridItem } from "../../data/research-grid";
 import type { PaperStatus, ResearchPreview } from "../../data/research";
 import { FileText } from "@lucide/astro";
-import { getResearchDetailHref, paperStatusLabels } from "../../data/research";
+import { getPaperDetailHref, paperStatusLabels } from "../../data/research";
 import ResearchPreviewCard from "./ResearchPreview.astro";
 
 type BaseProps = {
@@ -39,9 +39,14 @@ type Props = PaperProps | RepoProps;
 const SELF_AUTHOR = "Ludovic K. Tuncay";
 
 const props = Astro.props as Props;
-const href = getResearchDetailHref(props.collection, props.slug);
+const paperHref =
+    props.collection === "papers" ? getPaperDetailHref(props.slug) : null;
 const typeLabel =
-    props.collection === "papers" ? "publication" : "code repository";
+    props.collection === "papers"
+        ? "publication"
+        : props.slug === "xares"
+          ? "code repository (contributor)"
+          : "code repository";
 
 const accentVar =
     props.collection === "papers"
@@ -53,10 +58,13 @@ const isFeature = props.layout.variant === "feature";
 const hasPreview = Boolean(props.preview) && props.layout.variant !== "compact";
 const isPortfolio = props.collection === "repos" && props.slug === "portfolio";
 const hasStarsSticker =
-    props.collection === "repos" && props.slug === "audio-jepa";
+    props.collection === "repos" &&
+    (props.slug === "audio-jepa" || props.slug === "xares");
 
 const sizeClass = isFeature
     ? "min-h-[17rem]"
+    : isPortfolio
+      ? "min-h-[14rem]"
     : props.layout.variant === "wide"
       ? "min-h-[16rem]"
       : "min-h-[15rem]";
@@ -76,7 +84,9 @@ const authorsWithSelf =
         : null;
 
 const readPaperHref =
-    props.collection === "papers" ? (props.doi ?? props.arxiv ?? href) : null;
+    props.collection === "papers"
+        ? (props.doi ?? props.arxiv ?? paperHref!)
+        : null;
 
 const repoTags =
     props.collection === "repos"
@@ -93,14 +103,26 @@ const repoTags =
         "[grid-column:span_1_/_span_1] [order:var(--item-order)] md:[grid-column:span_var(--tablet-span)_/_span_var(--tablet-span)] xl:[grid-column:span_var(--desktop-span)_/_span_var(--desktop-span)]",
     ]}
 >
-    <header class="flex items-start justify-between gap-3">
+    <header
+        class:list={[
+            "flex items-start justify-between gap-3",
+            isPortfolio ? "absolute left-5 top-5 z-10 md:left-6 md:top-6" : "",
+        ]}
+    >
         <div class="flex min-w-0 flex-col gap-2">
-            <span class="ui-copy text-[var(--color-ink)]">
+            <span
+                class:list={[
+                    "research-label text-[var(--color-ink)]",
+                    props.collection === "papers"
+                        ? "accent-glow"
+                        : "accent-glow-secondary",
+                ]}
+            >
                 {typeLabel}
             </span>
             {
                 props.collection === "papers" ? (
-                    <span class="ui-copy text-[var(--color-ink-muted)]">
+                    <span class="research-label text-[var(--color-ink-muted)]">
                         {props.venue} {props.year}
                         <span
                             class="mx-2 text-[var(--color-divider)]"
@@ -132,7 +154,7 @@ const repoTags =
                 ? "flex-col md:flex-row md:items-stretch"
                 : "flex-col",
             isPortfolio
-                ? "md:grid md:grid-cols-[minmax(0,1fr)_minmax(14rem,0.85fr)] md:items-center"
+                ? "md:grid md:grid-cols-[minmax(14rem,0.55fr)_minmax(0,1.45fr)] md:items-center"
                 : "",
         ]}
     >
@@ -144,7 +166,7 @@ const repoTags =
                         isFeature || props.collection === "papers"
                             ? "md:order-2 md:basis-[34%]"
                             : "",
-                        isPortfolio ? "md:basis-auto" : "",
+                        isPortfolio ? "md:order-2 md:basis-auto" : "",
                     ]}
                 >
                     <ResearchPreviewCard
@@ -161,9 +183,10 @@ const repoTags =
             class:list={[
                 "flex flex-1 flex-col gap-6",
                 isFeature || props.collection === "papers" ? "md:order-1" : "",
+                isPortfolio ? "md:order-1 md:pt-10" : "",
             ]}
         >
-            <div class="space-y-6">
+            <div class="research-card-copy">
                 <h2
                     class:list={[
                         titleClass,
@@ -188,7 +211,13 @@ const repoTags =
                 }
             </div>
 
-            <div class="space-y-5">
+            <div
+                class:list={[
+                    props.collection === "papers"
+                        ? "research-card-actions-block mt-auto pt-3"
+                        : "research-card-actions-block",
+                ]}
+            >
                 {
                     props.collection === "papers" ? (
                         <>
@@ -208,17 +237,17 @@ const repoTags =
                                     </span>
                                 ))}
                             </p>
-                            <div class="flex flex-wrap gap-3 pt-2">
+                            <div class="flex flex-wrap gap-3">
                                 <a
                                     href={readPaperHref!}
                                     class="button-shell button-primary !gap-1.5 !px-3 !py-2"
                                     target={
-                                        readPaperHref === href
+                                        readPaperHref === paperHref
                                             ? undefined
                                             : "_blank"
                                     }
                                     rel={
-                                        readPaperHref === href
+                                        readPaperHref === paperHref
                                             ? undefined
                                             : "noreferrer"
                                     }
@@ -227,7 +256,7 @@ const repoTags =
                                     Read paper
                                 </a>
                                 <a
-                                    href={href}
+                                    href={paperHref!}
                                     class="button-shell button-muted !px-3 !py-2"
                                 >
                                     Details
@@ -235,26 +264,7 @@ const repoTags =
                             </div>
                         </>
                     ) : (
-                        <div class="space-y-4">
-                            <div class="flex flex-wrap gap-3">
-                                <a
-                                    href={props.url}
-                                    class="button-shell button-primary !gap-1.5 !px-3 !py-2"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.94 0-1.31.47-2.39 1.24-3.23-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23A11.5 11.5 0 0 1 12 5.59c1.02.01 2.04.14 3 .41 2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.92 1.23 3.23 0 4.61-2.81 5.63-5.49 5.93.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0 0 12 .5Z" />
-                                    </svg>
-                                    GitHub
-                                </a>
-                                <a
-                                    href={href}
-                                    class="button-shell button-muted !px-3 !py-2"
-                                >
-                                    Details
-                                </a>
-                            </div>
+                        <>
                             <div class="tag-list">
                                 {repoTags.map((tag) => (
                                     <span class="tag-chip tag-chip-muted">
@@ -262,7 +272,19 @@ const repoTags =
                                     </span>
                                 ))}
                             </div>
-                        </div>
+                            <div class="flex flex-wrap gap-3">
+                                <a
+                                    href={props.url}
+                                    class="button-shell button-primary !gap-1.5 !px-3 !py-2"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    <img src="/GitHub_light.svg" alt="" class="github-mark github-mark-light" loading="lazy" />
+                                    <img src="/GitHub_dark.svg" alt="" class="github-mark github-mark-dark" loading="lazy" />
+                                    GitHub
+                                </a>
+                            </div>
+                        </>
                     )
                 }
             </div>
