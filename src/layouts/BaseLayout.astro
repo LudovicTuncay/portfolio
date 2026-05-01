@@ -1,6 +1,5 @@
 ---
 import BackgroundBlobs from "../components/BackgroundBlobs.astro";
-import BackgroundGrid from "../components/BackgroundGrid.astro";
 import Footer from "../components/Footer.astro";
 import Nav from "../components/Nav.astro";
 import "../styles/global.css";
@@ -39,6 +38,8 @@ const {
           root.dataset.portfolioPreview = "true";
         }
 
+        const previewTheme = params.get("portfolio-preview-theme");
+
         const getStoredTheme = () => {
           try {
             const theme = window.localStorage.getItem(storageKey);
@@ -54,7 +55,10 @@ const {
           root.style.colorScheme = theme;
         };
 
-        const getPreferredTheme = () => getStoredTheme() ?? (mediaQuery.matches ? "dark" : "light");
+        const getPreferredTheme = () =>
+          previewTheme === "light" || previewTheme === "dark"
+            ? previewTheme
+            : getStoredTheme() ?? (mediaQuery.matches ? "dark" : "light");
 
         const setTheme = (theme) => {
           try {
@@ -86,7 +90,6 @@ const {
   </head>
   <body>
     <BackgroundBlobs />
-    <BackgroundGrid />
     <Nav currentPath={currentPath} />
     <main>
       <slot />

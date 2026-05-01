@@ -140,8 +140,8 @@ const frameClass =
             isPortfolio && (
                 <div class="relative flex min-h-[12rem] w-full items-center justify-center py-1 md:min-h-[14.5rem]">
                     <div class="relative w-full max-w-[42rem]">
-                        <div class="portfolio-browser-mockup relative isolate aspect-[16/10] w-[84%] overflow-hidden rounded-[0.85rem] border border-[color-mix(in_srgb,var(--color-divider)_72%,var(--card-accent,var(--color-accent)))] bg-[color-mix(in_srgb,var(--color-surface)_82%,var(--card-accent,var(--color-accent))_8%)] shadow-[0_14px_30px_rgb(0_0_0_/_14%)] [clip-path:inset(0_round_0.85rem)] [contain:paint]">
-                            <div class="flex h-5 items-center gap-1.5 border-b border-[var(--color-divider)] bg-[color-mix(in_srgb,var(--color-surface)_82%,var(--card-accent,var(--color-accent))_8%)] px-2 md:h-6 md:px-2.5">
+                        <div class="portfolio-browser-mockup relative isolate w-[84%] overflow-hidden rounded-[0.85rem] border border-[color-mix(in_srgb,var(--color-divider)_72%,var(--card-accent,var(--color-accent)))] bg-[color-mix(in_srgb,var(--color-surface)_82%,var(--card-accent,var(--color-accent))_8%)] shadow-[0_14px_30px_rgb(0_0_0_/_14%)] [clip-path:inset(0_round_0.85rem)] [contain:paint]">
+                            <div class="relative z-10 flex h-5 items-center gap-1.5 bg-[color-mix(in_srgb,var(--color-surface)_82%,var(--card-accent,var(--color-accent))_8%)] px-2 md:h-6 md:px-2.5">
                                 <span class="h-1.5 w-1.5 rounded-full bg-[#ff6b68]" />
                                 <span class="h-1.5 w-1.5 rounded-full bg-[#f6c85f]" />
                                 <span class="h-1.5 w-1.5 rounded-full bg-[#62c983]" />
@@ -151,67 +151,56 @@ const frameClass =
                             </div>
 
                             <div
-                                class="portfolio-live-frame portfolio-browser-screen absolute bottom-px left-px right-px top-5 overflow-hidden rounded-b-[0.68rem] bg-[var(--color-surface)] [clip-path:inset(0_round_0_0_0.68rem_0.68rem)] [contain:paint] md:top-6"
-                                data-portfolio-live-frame
-                                data-preview-width="1440"
-                                data-preview-height="900"
+                                class="portfolio-browser-screen relative -mt-px aspect-[1440/846] w-full overflow-hidden rounded-b-[0.68rem] bg-[var(--color-surface)] [clip-path:inset(0_round_0_0_0.68rem_0.68rem)] [contain:paint]"
                             >
-                                <iframe
-                                    src="/?portfolio-preview=desktop"
-                                    title="Live preview of the portfolio home page in a desktop browser"
-                                    class="portfolio-live-view pointer-events-none absolute left-0 top-0 origin-top-left border-0"
+                                <img
+                                    src="/portfolio-preview-desktop.webp"
+                                    alt="Static desktop preview of the portfolio home page"
+                                    class="portfolio-preview-light h-full w-full object-contain object-top"
+                                    width="1440"
+                                    height="846"
                                     loading="lazy"
-                                    sandbox="allow-scripts allow-same-origin"
-                                    scrolling="no"
-                                    tabindex="-1"
+                                    decoding="async"
+                                />
+                                <img
+                                    src="/portfolio-preview-desktop-dark.webp"
+                                    alt="Static desktop preview of the portfolio home page in dark mode"
+                                    class="portfolio-preview-dark hidden h-full w-full object-contain object-top"
+                                    width="1440"
+                                    height="846"
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                             </div>
                         </div>
 
-                        <div class="portfolio-phone-mockup absolute bottom-[-0.2rem] right-[5%] isolate aspect-[9/19.5] w-[24%] min-w-[5.1rem] max-w-[6rem] overflow-hidden rounded-[1rem] border-2 border-black bg-black shadow-[0_12px_24px_rgb(0_0_0_/_22%)] [clip-path:inset(0_round_1rem)] [contain:paint] md:bottom-[-0.25rem] md:right-[6%] md:max-w-[6.8rem] md:rounded-[1.15rem] md:border-[3px] md:[clip-path:inset(0_round_1.15rem)]">
-                            <div class="absolute inset-x-0 top-0 z-20 h-[1.08rem] border-b border-[var(--color-divider)] bg-[var(--color-surface)] font-[var(--font-ui)] text-[3.7px] font-bold text-[var(--color-ink)] md:h-[1.28rem] md:text-[4.6px]">
-                                <div class="absolute left-[9%] top-1/2 -translate-y-1/2 tracking-normal">
-                                    9:41
-                                </div>
-                                <div class="absolute left-1/2 top-1/2 h-[0.34rem] w-[1.45rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-black md:h-[0.43rem] md:w-[1.75rem]" />
-                                <div class="absolute right-[8%] top-1/2 flex -translate-y-1/2 items-center gap-[0.13rem] md:gap-[0.15rem]">
-                                    <div class="flex h-[0.28rem] items-end gap-px">
-                                        <span class="block h-[0.09rem] w-px rounded-full bg-current" />
-                                        <span class="block h-[0.16rem] w-px rounded-full bg-current" />
-                                        <span class="block h-[0.23rem] w-px rounded-full bg-current" />
-                                        <span class="block h-[0.28rem] w-px rounded-full bg-current" />
-                                    </div>
-                                    <svg
-                                        aria-hidden="true"
-                                        viewBox="0 0 12 8"
-                                        class="h-[0.3rem] w-[0.45rem] fill-none stroke-current stroke-[1.45]"
-                                    >
-                                        <path d="M1 3.1a7.1 7.1 0 0 1 10 0" />
-                                        <path d="M3.4 5.2a3.7 3.7 0 0 1 5.2 0" />
-                                        <path d="M6 7h.01" stroke-linecap="round" />
-                                    </svg>
-                                    <div class="flex items-center">
-                                        <div class="h-[0.25rem] w-[0.48rem] overflow-hidden rounded-[0.08rem] border border-current p-[0.04rem]">
-                                            <span class="block h-full w-[72%] rounded-[0.03rem] bg-current" />
-                                        </div>
-                                        <span class="block h-[0.11rem] w-px rounded-r-full bg-current" />
-                                    </div>
-                                </div>
+                        <div class="portfolio-phone-mockup absolute bottom-[0.12rem] right-[1%] isolate flex w-[clamp(4.15rem,22vw,5rem)] flex-col overflow-hidden rounded-[0.9rem] border-2 border-black bg-black shadow-[0_12px_24px_rgb(0_0_0_/_22%)] [clip-path:inset(0_round_0.9rem)] [contain:paint] sm:right-[4%] sm:w-[clamp(4.7rem,21vw,5.7rem)] md:bottom-[-0.25rem] md:right-[6%] md:w-[24%] md:max-w-[6.8rem] md:rounded-[1.15rem] md:border-[3px] md:[clip-path:inset(0_round_1.15rem)]">
+                            <div
+                                aria-hidden="true"
+                                class="relative z-20 h-[0.82rem] shrink-0 bg-[var(--color-surface)] sm:h-[0.96rem] md:h-[1.28rem]"
+                            >
+                                <div class="absolute left-1/2 top-1/2 h-[0.32rem] w-[1.38rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-black sm:h-[0.38rem] sm:w-[1.62rem] md:h-[0.43rem] md:w-[1.75rem]" />
                             </div>
                             <div
-                                class="portfolio-live-frame absolute inset-x-0 bottom-0 top-[1.08rem] overflow-hidden rounded-b-[0.78rem] bg-[var(--color-surface)] [clip-path:inset(0_round_0_0_0.78rem_0.78rem)] [contain:paint] md:top-[1.28rem] md:rounded-b-[0.92rem] md:[clip-path:inset(0_round_0_0_0.92rem_0.92rem)]"
-                                data-portfolio-live-frame
-                                data-preview-width="390"
-                                data-preview-height="845"
+                                class="relative -mt-px aspect-[390/845] w-full overflow-hidden rounded-b-[0.78rem] bg-[var(--color-surface)] [clip-path:inset(0_round_0_0_0.78rem_0.78rem)] [contain:paint] md:rounded-b-[0.92rem] md:[clip-path:inset(0_round_0_0_0.92rem_0.92rem)]"
                             >
-                                <iframe
-                                    src="/?portfolio-preview=mobile"
-                                    title="Live preview of the portfolio home page on a mobile phone"
-                                    class="portfolio-live-view pointer-events-none absolute left-0 top-0 origin-top-left border-0"
+                                <img
+                                    src="/portfolio-preview-mobile.webp"
+                                    alt="Static mobile preview of the portfolio home page"
+                                    class="portfolio-preview-light h-full w-full object-contain object-top"
+                                    width="390"
+                                    height="845"
                                     loading="lazy"
-                                    sandbox="allow-scripts allow-same-origin"
-                                    scrolling="no"
-                                    tabindex="-1"
+                                    decoding="async"
+                                />
+                                <img
+                                    src="/portfolio-preview-mobile-dark.webp"
+                                    alt="Static mobile preview of the portfolio home page in dark mode"
+                                    class="portfolio-preview-dark hidden h-full w-full object-contain object-top"
+                                    width="390"
+                                    height="845"
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                             </div>
                         </div>
@@ -366,94 +355,12 @@ const frameClass =
     }
 </div>
 
-<script>
-    const applyPortfolioFrameTheme = (iframe) => {
-        if (!(iframe instanceof HTMLIFrameElement)) {
-            return;
-        }
-
-        const theme =
-            document.documentElement.dataset.theme ??
-            (document.documentElement.classList.contains("dark")
-                ? "dark"
-                : "light");
-
-        try {
-            const frameRoot = iframe.contentDocument?.documentElement;
-
-            if (!frameRoot) {
-                return;
-            }
-
-            frameRoot.classList.toggle("dark", theme === "dark");
-            frameRoot.dataset.theme = theme;
-            frameRoot.style.colorScheme = theme;
-        } catch {}
-    };
-
-    const syncPortfolioFrameThemes = () => {
-        document
-            .querySelectorAll("[data-portfolio-live-frame] iframe")
-            .forEach(applyPortfolioFrameTheme);
-    };
-
-    const syncPortfolioLiveFrames = () => {
-        document
-            .querySelectorAll("[data-portfolio-live-frame]")
-            .forEach((frame) => {
-                if (!(frame instanceof HTMLElement)) {
-                    return;
-                }
-
-                const iframe = frame.querySelector("iframe");
-                const previewWidth = Number(frame.dataset.previewWidth);
-                const previewHeight = Number(frame.dataset.previewHeight);
-
-                if (
-                    !(iframe instanceof HTMLIFrameElement) ||
-                    !previewWidth ||
-                    !previewHeight
-                ) {
-                    return;
-                }
-
-                const scale = frame.clientWidth / previewWidth;
-                iframe.style.width = `${previewWidth}px`;
-                iframe.style.height = `${previewHeight}px`;
-                iframe.style.transform = `scale(${scale})`;
-                applyPortfolioFrameTheme(iframe);
-            });
-    };
-
-    syncPortfolioLiveFrames();
-
-    if (!window.__portfolioLiveFrameResizeObserver) {
-        window.__portfolioLiveFrameResizeObserver = new ResizeObserver(
-            syncPortfolioLiveFrames,
-        );
+<style>
+    :global(html.dark) .portfolio-preview-light {
+        display: none;
     }
 
-    document
-        .querySelectorAll("[data-portfolio-live-frame]")
-        .forEach((frame) => {
-            window.__portfolioLiveFrameResizeObserver.observe(frame);
-
-            const iframe = frame.querySelector("iframe");
-
-            if (iframe instanceof HTMLIFrameElement) {
-                iframe.addEventListener("load", () => {
-                    applyPortfolioFrameTheme(iframe);
-                });
-            }
-        });
-
-    window.addEventListener("themechange", syncPortfolioFrameThemes);
-
-    new MutationObserver(syncPortfolioFrameThemes).observe(
-        document.documentElement,
-        {
-            attributes: true,
-            attributeFilter: ["class", "data-theme"],
-        },
-    );
-</script>
+    :global(html.dark) .portfolio-preview-dark {
+        display: block;
+    }
+</style>

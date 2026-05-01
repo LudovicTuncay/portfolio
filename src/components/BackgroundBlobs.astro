@@ -22,6 +22,8 @@
     z-index: -1;
     overflow: hidden;
     pointer-events: none;
+    contain: paint;
+    isolation: isolate;
   }
 
   .blob {
@@ -29,8 +31,10 @@
     width: 20vmax;
     height: 20vmax;
     border-radius: 50%;
-    filter: blur(45px);
-    mix-blend-mode: multiply;
+    filter: blur(32px);
+    opacity: 0.92;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
     will-change: transform;
   }
 
@@ -42,7 +46,7 @@
     );
     top: -10vmax;
     left: -10vmax;
-    animation: drift-a 19s ease-in-out infinite;
+    animation: drift-a 31s ease-in-out infinite;
   }
 
   .blob-b {
@@ -53,7 +57,7 @@
     );
     top: 5%;
     right: -8vmax;
-    animation: drift-b 25s ease-in-out infinite;
+    animation: drift-b 41s ease-in-out infinite;
   }
 
   .blob-c {
@@ -64,7 +68,7 @@
     );
     top: 40%;
     left: -6vmax;
-    animation: drift-c 14s ease-in-out infinite;
+    animation: drift-c 27s ease-in-out infinite;
   }
 
   .blob-d {
@@ -75,7 +79,7 @@
     );
     top: 30%;
     left: 40%;
-    animation: drift-d 22s ease-in-out infinite;
+    animation: drift-d 37s ease-in-out infinite;
   }
 
   .blob-e {
@@ -86,7 +90,7 @@
     );
     top: 55%;
     right: 8%;
-    animation: drift-e 16s ease-in-out infinite;
+    animation: drift-e 29s ease-in-out infinite;
   }
 
   .blob-f {
@@ -97,7 +101,7 @@
     );
     bottom: -10vmax;
     left: 10%;
-    animation: drift-f 29s ease-in-out infinite;
+    animation: drift-f 47s ease-in-out infinite;
   }
 
   .blob-g {
@@ -108,7 +112,7 @@
     );
     bottom: -6vmax;
     right: -6vmax;
-    animation: drift-g 11s ease-in-out infinite;
+    animation: drift-g 23s ease-in-out infinite;
   }
 
   .blob-h {
@@ -121,7 +125,7 @@
     height: 28vmax;
     top: 15%;
     left: 18%;
-    animation: drift-h 33s ease-in-out infinite;
+    animation: drift-h 53s ease-in-out infinite;
   }
 
   .blob-i {
@@ -134,7 +138,7 @@
     height: 32vmax;
     top: 45%;
     right: 22%;
-    animation: drift-i 27s ease-in-out infinite;
+    animation: drift-i 43s ease-in-out infinite;
   }
 
   .blob-j {
@@ -147,7 +151,7 @@
     height: 24vmax;
     bottom: 18%;
     left: 30%;
-    animation: drift-j 21s ease-in-out infinite;
+    animation: drift-j 35s ease-in-out infinite;
   }
 
   .blob-k {
@@ -160,7 +164,7 @@
     height: 36vmax;
     top: 60%;
     left: -4vmax;
-    animation: drift-k 37s ease-in-out infinite;
+    animation: drift-k 59s ease-in-out infinite;
   }
 
   @keyframes drift-a {

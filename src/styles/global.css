@@ -1,12 +1,9 @@
-@import "@fontsource/cormorant-garamond/latin-700.css";
 @import "@fontsource/cormorant-garamond/latin-700-italic.css";
 @import "@fontsource/atkinson-hyperlegible-next/latin-500.css";
 @import "@fontsource/atkinson-hyperlegible-next/latin-500-italic.css";
-@import "@fontsource/atkinson-hyperlegible-next/latin-700.css";
 @import "@fontsource/atkinson-hyperlegible-next/latin-800.css";
 @import "@fontsource/atkinson-hyperlegible-next/latin-800-italic.css";
 @import "@fontsource/lilex/latin-600.css";
-@import "@fontsource/lilex/latin-700.css";
 @import "tailwindcss";
 
 :root {
@@ -280,7 +277,7 @@ html[data-portfolio-preview="true"] body {
   color: var(--color-ink);
   font-family: var(--font-ui);
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.05;
   letter-spacing: -0.02em;
 }
@@ -354,7 +351,7 @@ html[data-portfolio-preview="true"] body {
 .footer-copyright {
   font-family: var(--font-body);
   font-size: var(--text-footer-copyright-size);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.2;
   letter-spacing: -0.01em;
   color: var(--color-ink);
