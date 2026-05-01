@@ -28,32 +28,48 @@ const mobileMenuId = "site-mobile-nav";
         aria-controls={mobileMenuId}
         aria-label="Open navigation menu"
       >
-        <svg
-          data-mobile-menu-icon
-          aria-hidden="true"
-          class="h-[24px] w-[24px]"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-        >
-          <path d="M4 7h16" />
-          <path d="M4 12h16" />
-          <path d="M4 17h16" />
-        </svg>
+        <span data-mobile-menu-icon="menu" aria-hidden="true">
+          <svg
+            class="h-[24px] w-[24px]"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path d="M4 7h16" />
+            <path d="M4 12h16" />
+            <path d="M4 17h16" />
+          </svg>
+        </span>
+        <span data-mobile-menu-icon="close" aria-hidden="true" class="hidden">
+          <svg
+            class="h-[24px] w-[24px]"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path d="M6 6l12 12" />
+            <path d="M18 6L6 18" />
+          </svg>
+        </span>
 
       </button>
     </div>
 
     <div
       id={mobileMenuId}
-      class="hidden border-t border-[var(--color-divider)] md:hidden"
+      class="relative left-1/2 hidden w-screen -translate-x-1/2 border-t border-[var(--color-divider)] md:hidden"
       data-mobile-menu-panel
       hidden
     >
-      <nav aria-label="Primary" class="flex min-h-[calc(100dvh-73px)] flex-col py-6">
-        <ul role="list" class="flex flex-col items-start gap-1">
+      <nav
+        aria-label="Primary"
+        class="mx-auto grid min-h-[calc(100dvh-73px)] w-full max-w-[var(--container-max)] grid-rows-[1fr_auto_1fr] px-6 py-6"
+      >
+        <ul role="list" class="row-start-2 flex flex-col items-center gap-2 text-center">
           {navItems.map((item) => {
             const active = currentPath === item.href;
             return (
@@ -61,7 +77,7 @@ const mobileMenuId = "site-mobile-nav";
                 <a
                   href={item.href}
                   class:list={[
-                    "body-copy block py-3 text-[clamp(1.375rem,5vw,1.75rem)] transition-colors duration-100 ease-in-out",
+                    "body-copy block py-3 text-[clamp(1.5rem,7vw,2rem)] transition-colors duration-100 ease-in-out",
                     active
                       ? "!font-[800] !italic !text-[var(--color-ink)] nav-accent-glow"
                       : "hover:text-[var(--color-ink)]"
@@ -76,7 +92,7 @@ const mobileMenuId = "site-mobile-nav";
           })}
         </ul>
 
-        <div class="mt-auto pt-8">
+        <div class="row-start-3 self-end justify-self-center pt-8">
           <ThemeToggle showLabel={true} />
         </div>
       </nav>
@@ -125,6 +141,8 @@ const mobileMenuId = "site-mobile-nav";
     const mobileToggle = navRoot.querySelector("[data-mobile-menu-toggle]");
     const mobilePanel = navRoot.querySelector("[data-mobile-menu-panel]");
     const mobileLinks = Array.from(navRoot.querySelectorAll("[data-mobile-nav-link]"));
+    const menuIcon = navRoot.querySelector('[data-mobile-menu-icon="menu"]');
+    const closeIcon = navRoot.querySelector('[data-mobile-menu-icon="close"]');
     const desktopBreakpoint = window.matchMedia("(min-width: 768px)");
 
     const setMenuOpen = (open) => {
@@ -136,6 +154,8 @@ const mobileMenuId = "site-mobile-nav";
       mobilePanel.classList.toggle("hidden", !open);
       mobileToggle.setAttribute("aria-expanded", String(open));
       mobileToggle.setAttribute("aria-label", open ? "Collapse navigation menu" : "Open navigation menu");
+      menuIcon?.classList.toggle("hidden", open);
+      closeIcon?.classList.toggle("hidden", !open);
       document.body.classList.toggle("overflow-hidden", open);
     };
 
