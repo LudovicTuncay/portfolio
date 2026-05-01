@@ -1,19 +1,55 @@
 ---
+import ButtonLink from "../components/ButtonLink.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
-  title="LKT | Photography"
+  title="LKT | Photography work in progress"
   currentPath="/photography"
-  description="Photography page for Ludovic K. TUNCAY."
+  description="Ludovic K. TUNCAY's photography page is currently a work in progress."
 >
-  <section class="page-container pt-16">
-    <div class="max-w-[44rem] space-y-5">
-      <h1 class="display-title accent-glow">Photography</h1>
-      <p class="body-copy">
-        This page is scaffolded so the navigation works cleanly. The album system can now be added
-        on top of the same typography, layout, and interaction tokens defined for the home page.
-      </p>
+  <section class="page-container flex min-h-[calc(100svh-73px)] items-center py-16 md:py-24">
+    <div class="grid w-full gap-12 md:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)] md:items-end md:gap-16">
+      <div class="space-y-8">
+        <div class="space-y-5">
+          <p class="ui-copy text-[var(--color-ink-muted)]">
+            Work in progress
+          </p>
+
+          <div class="max-w-[46rem] space-y-3">
+            <h1 class="display-title accent-glow">Photography is developing.</h1>
+            <p class="body-copy max-w-[36rem]">
+              I am preparing the album system and image layouts for this page.
+              The photography section will be available once the collections are ready.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-3 md:gap-4">
+          <ButtonLink href="/" label="Back home" />
+          <ButtonLink href="/research-code" label="Research & code" muted={true} />
+        </div>
+      </div>
+
+      <aside
+        class="border-y-2 border-[var(--color-ink)] py-5"
+        aria-label="Photography page status"
+      >
+        <dl class="grid gap-5">
+          <div class="space-y-1">
+            <dt class="ui-copy text-[var(--color-ink)]">Status</dt>
+            <dd class="body-copy">Albums in progress</dd>
+          </div>
+          <div class="space-y-1">
+            <dt class="ui-copy text-[var(--color-ink)]">Focus</dt>
+            <dd class="body-copy">Photo stories, custom layouts, and lightbox viewing</dd>
+          </div>
+          <div class="space-y-1">
+            <dt class="ui-copy text-[var(--color-ink)]">Next</dt>
+            <dd class="body-copy">Publishing the first curated albums</dd>
+          </div>
+        </dl>
+      </aside>
     </div>
   </section>
 </BaseLayout>
