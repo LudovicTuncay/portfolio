@@ -1,9 +1,14 @@
 ---
+import { Image } from "astro:assets";
 import type { ResearchCardVariant } from "../../data/research-grid";
 import type {
     ResearchCollectionKey,
     ResearchPreview as PreviewData,
 } from "../../data/research";
+import portfolioPreviewDesktopDark from "../../assets/portfolio-preview/portfolio-preview-desktop-dark.webp";
+import portfolioPreviewDesktop from "../../assets/portfolio-preview/portfolio-preview-desktop.webp";
+import portfolioPreviewMobileDark from "../../assets/portfolio-preview/portfolio-preview-mobile-dark.webp";
+import portfolioPreviewMobile from "../../assets/portfolio-preview/portfolio-preview-mobile.webp";
 
 type Props = {
     preview: PreviewData;
@@ -153,21 +158,25 @@ const frameClass =
                             <div
                                 class="portfolio-browser-screen relative -mt-px aspect-[1440/846] w-full overflow-hidden rounded-b-[0.68rem] bg-[var(--color-surface)] [clip-path:inset(0_round_0_0_0.68rem_0.68rem)] [contain:paint]"
                             >
-                                <img
-                                    src="/portfolio-preview-desktop.webp"
+                                <Image
+                                    src={portfolioPreviewDesktop}
                                     alt="Static desktop preview of the portfolio home page"
                                     class="portfolio-preview-light h-full w-full object-contain object-top"
-                                    width="1440"
-                                    height="846"
+                                    layout="constrained"
+                                    width={1440}
+                                    height={846}
+                                    sizes="(min-width: 768px) 565px, 84vw"
                                     loading="lazy"
                                     decoding="async"
                                 />
-                                <img
-                                    src="/portfolio-preview-desktop-dark.webp"
+                                <Image
+                                    src={portfolioPreviewDesktopDark}
                                     alt="Static desktop preview of the portfolio home page in dark mode"
                                     class="portfolio-preview-dark hidden h-full w-full object-contain object-top"
-                                    width="1440"
-                                    height="846"
+                                    layout="constrained"
+                                    width={1440}
+                                    height={846}
+                                    sizes="(min-width: 768px) 565px, 84vw"
                                     loading="lazy"
                                     decoding="async"
                                 />
@@ -184,21 +193,25 @@ const frameClass =
                             <div
                                 class="relative -mt-px aspect-[390/845] w-full overflow-hidden rounded-b-[0.78rem] bg-[var(--color-surface)] [clip-path:inset(0_round_0_0_0.78rem_0.78rem)] [contain:paint] md:rounded-b-[0.92rem] md:[clip-path:inset(0_round_0_0_0.92rem_0.92rem)]"
                             >
-                                <img
-                                    src="/portfolio-preview-mobile.webp"
+                                <Image
+                                    src={portfolioPreviewMobile}
                                     alt="Static mobile preview of the portfolio home page"
                                     class="portfolio-preview-light h-full w-full object-contain object-top"
-                                    width="390"
-                                    height="845"
+                                    layout="constrained"
+                                    width={390}
+                                    height={845}
+                                    sizes="(min-width: 768px) 109px, (min-width: 640px) 91px, 80px"
                                     loading="lazy"
                                     decoding="async"
                                 />
-                                <img
-                                    src="/portfolio-preview-mobile-dark.webp"
+                                <Image
+                                    src={portfolioPreviewMobileDark}
                                     alt="Static mobile preview of the portfolio home page in dark mode"
                                     class="portfolio-preview-dark hidden h-full w-full object-contain object-top"
-                                    width="390"
-                                    height="845"
+                                    layout="constrained"
+                                    width={390}
+                                    height={845}
+                                    sizes="(min-width: 768px) 109px, (min-width: 640px) 91px, 80px"
                                     loading="lazy"
                                     decoding="async"
                                 />
