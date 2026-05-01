@@ -65,8 +65,8 @@
   --stack-gap-sm: 12px;
   --stack-gap-md: 20px;
   --stack-gap-lg: 32px;
-  --button-padding-x: 16px;
-  --button-padding-y: 16px;
+  --button-padding-x: 14px;
+  --button-padding-y: 12px;
   --icon-button-size: 40px;
   --icon-button-padding: 8px;
   --icon-arrow-size: 24px;
@@ -326,6 +326,10 @@ html[data-portfolio-preview="true"] body {
   letter-spacing: -0.01em;
 }
 
+.paragraph-flow > p + p {
+  text-indent: 1.75em;
+}
+
 /* Location / Meta — Medium Italic */
 .meta-copy {
   color: var(--color-ink-muted);
@@ -399,9 +403,10 @@ html[data-portfolio-preview="true"] body {
   border: var(--border-width-default) solid currentColor;
   padding: var(--button-padding-y) var(--button-padding-x);
   font-family: var(--font-ui);
-  font-size: var(--text-ui-size);
+  font-size: clamp(0.75rem, 3.1vw, var(--text-ui-size));
   font-weight: 600;
   line-height: 1;
+  white-space: nowrap;
   transition:
     color var(--motion-default) var(--ease-standard),
     box-shadow var(--motion-default) var(--ease-standard),
@@ -418,6 +423,51 @@ html[data-portfolio-preview="true"] body {
   width: var(--icon-button-size);
   height: var(--icon-button-size);
   padding: 0;
+}
+
+.scroll-cue {
+  position: fixed;
+  left: 50%;
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 45;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  transform: translateX(-50%);
+  border: var(--border-width-default) solid var(--color-ink);
+  border-radius: 999px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-button-primary);
+  color: var(--color-ink);
+  font-family: var(--font-ui);
+  font-size: var(--text-ui-size);
+  font-weight: 600;
+  line-height: 1;
+  transition:
+    opacity var(--motion-default) var(--ease-standard),
+    box-shadow var(--motion-default) var(--ease-standard),
+    transform var(--motion-default) var(--ease-standard);
+}
+
+.scroll-cue[data-hidden="true"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scroll-cue:hover,
+.scroll-cue:focus-visible {
+  box-shadow: var(--shadow-button-primary-hover);
+  transform: translate(calc(-50% + 2px), -2px);
+}
+
+@media (min-width: 768px) {
+  .scroll-cue {
+    bottom: max(1.5rem, env(safe-area-inset-bottom));
+  }
 }
 
 .button-primary {

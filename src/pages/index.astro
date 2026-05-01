@@ -12,7 +12,7 @@ import {
   languages,
   photographyParagraph,
   publications,
-  researchParagraph
+  researchParagraphs
 } from "../data/home";
 ---
 
@@ -21,8 +21,8 @@ import {
   currentPath="/"
   description="Academic portfolio for Ludovic K. TUNCAY covering machine learning research, publications, experience, and photography."
 >
-  <section class="page-container pt-12 md:pt-16">
-    <div class="space-y-10 md:space-y-12">
+  <section class="page-container relative min-h-[calc(100svh-73px)] pt-12 md:min-h-[calc(100svh-73px)] md:pt-16">
+    <div class="space-y-10 pb-24 md:space-y-12 md:pb-28">
       <div class="max-w-full space-y-1">
         <h1 class="display-title">Hello 👋🏻</h1>
         <p class="display-title md:whitespace-nowrap">Welcome to my website !</p>
@@ -40,7 +40,7 @@ import {
             alongside one of my favorite hobby: <span class="body-emphasis">photography</span>.
           </p>
 
-          <div class="flex flex-wrap gap-4 pt-4">
+          <div class="flex flex-wrap gap-3 pt-4 min-[380px]:flex-nowrap md:gap-4">
             {introActions.map((action) => (
               <ButtonLink href={action.href} label={action.label} muted={action.muted} />
             ))}
@@ -48,12 +48,29 @@ import {
         </div>
       </div>
     </div>
+
+    <a href="#about" class="scroll-cue" aria-label="Scroll to About me" data-scroll-cue>
+      <span>Scroll</span>
+      <svg
+        aria-hidden="true"
+        class="h-5 w-5 md:h-4 md:w-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.25"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M12 5v14" />
+        <path d="m19 12-7 7-7-7" />
+      </svg>
+    </a>
   </section>
 
-  <section id="about" class="page-container pt-[var(--section-gap-xl)]">
+  <section id="about" class="page-container scroll-mt-24 pt-[var(--section-gap-xl)]">
     <div class="space-y-8">
       <SectionHeading title="About me" />
-      <div class="max-w-[62rem] space-y-6">
+      <div class="paragraph-flow max-w-[62rem] space-y-6 pt-4">
         {aboutParagraphs.map((paragraph) => (
           <p class="body-copy">{paragraph}</p>
         ))}
@@ -64,7 +81,11 @@ import {
   <section class="page-container pt-[var(--section-gap-lg)]">
     <div class="space-y-8">
       <h3 class="section-title">Thesis research interests</h3>
-      <p class="body-copy max-w-[62rem]">{researchParagraph}</p>
+      <div class="paragraph-flow max-w-[62rem] space-y-6 pt-4">
+        {researchParagraphs.map((paragraph) => (
+          <p class="body-copy">{paragraph}</p>
+        ))}
+      </div>
       <div class="pt-4">
         <ButtonLink href="/research-code" label="Learn more" />
       </div>
@@ -74,7 +95,7 @@ import {
   <section class="page-container pt-[var(--section-gap-md)]">
     <div class="space-y-8">
       <h3 class="section-title">Why photography ?</h3>
-      <p class="body-copy max-w-[62rem]">{photographyParagraph}</p>
+      <p class="body-copy max-w-[62rem] pt-4">{photographyParagraph}</p>
       <div class="pt-4">
         <ButtonLink href="/photography" label="Take a look" />
       </div>
@@ -128,3 +149,19 @@ import {
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  const scrollCue = document.querySelector("[data-scroll-cue]");
+  const aboutSection = document.querySelector("#about");
+
+  if (scrollCue instanceof HTMLElement && aboutSection instanceof HTMLElement) {
+    const updateScrollCue = () => {
+      const aboutTop = aboutSection.getBoundingClientRect().top;
+      scrollCue.dataset.hidden = String(window.scrollY > 0 && aboutTop <= window.innerHeight * 1.1);
+    };
+
+    updateScrollCue();
+    window.addEventListener("scroll", updateScrollCue, { passive: true });
+    window.addEventListener("resize", updateScrollCue);
+  }
+</script>

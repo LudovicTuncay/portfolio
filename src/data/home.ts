@@ -30,18 +30,22 @@ export const navItems: NavItem[] = [
 ];
 
 export const introActions: IntroAction[] = [
-  { href: "mailto:ludovic@example.com", label: "Contact me" },
+  { href: "mailto:contact@lkt.dev", label: "Contact me" },
   { href: "/#about", label: "About me", muted: true },
   { href: "/#resume", label: "Resume", muted: true },
 ];
 
 export const aboutParagraphs = [
-  "I was born and raised in Toulouse, France, and have been drawn to science, mathematics, and computing for as long as I can remember. I first studied computer science, then moved toward mathematics for artificial intelligence, where I found the questions that still interest me most: how models learn, what their representations contain, and why some methods generalize better than others.",
+  "I was born and raised in Toulouse, France, and have been drawn to science, mathematics, and computing for as long as I can remember.",
+  "I first studied computer science and mathematics, then moved to their applications to artificial intelligence, where I found the questions that still interest me most: how models learn, what their representations contain, and why some methods generalize better than others.",
   "I am now a PhD student in machine learning at IRIT and ANITI. My work focuses on audio representation learning, robust evaluation, and research tools that make experiments easier to reproduce and understand.",
 ];
 
-export const researchParagraph =
-  "My thesis focuses on self-supervised learning for general audio embeddings: compact representations that transfer across speech, music, and environmental sound. Through Audio-JEPA and BEST-RQ-2, I study how pretraining objectives shape what an encoder learns and how those representations can be made useful beyond a single dataset. I also work on evaluation and benchmarking, including contributions to audio benchmarks that compare models fairly across many tasks and datasets. More broadly, I am interested in dataset quality: my work includes label correction for AudioSet, and I am currently exploring dataset curation in another domain outside of the audio domain. I try to keep these research threads connected through open-source systems that make experiments easier to reproduce, compare, and extend.";
+export const researchParagraphs = [
+  "My thesis focuses on self-supervised learning for general audio embeddings: compact representations that transfer across speech, music, and environmental sound.",
+  "Through Audio-JEPA and BEST-RQ-2, I study how pretraining objectives shape what an encoder learns and how those representations can be made useful beyond a single dataset. I also work on evaluation and benchmarking, including contributions to audio benchmarks that compare models fairly across many tasks and datasets.",
+  "More broadly, I am interested in dataset quality: my work includes label correction for AudioSet, and I am currently exploring dataset curation in another domain outside of the audio domain. I try to keep these research threads connected through open-source systems that make experiments easier to reproduce, compare, and extend.",
+];
 
 export const photographyParagraph =
   "Photography gives me a different way of paying attention. I am especially interested in street scenes, visual contrasts, and the tension between documentary detail and mood. It complements research well: it slows observation down and keeps me attentive to composition, light, and unexpected structure.";
