@@ -117,8 +117,10 @@ This page is **not yet designed**. Discussion points below.
    by the JSON descriptor rows (`full-bleed`, `diptych`, `triptych`)? Both?
 4. **Lightbox:** Should clicking a photo open a full-screen lightbox with
    prev/next navigation? (Svelte island)
-5. **Photo URLs:** Photos are on Cloudflare R2. How should the R2 bucket URL
-   be configured? (env variable? hardcoded subdomain?)
+5. **Photo URLs:** Display images are served from Cloudinary; originals are
+   stored in Cloudflare R2 for downloads. Confirm whether original downloads
+   should be public via an R2/custom-domain base URL or private via a server
+   route backed by an R2 binding.
 6. **Album upload workflow:** Is the visual album editor (admin UI) in scope
    for the initial launch, or will JSON descriptors be written by hand first?
 
@@ -130,11 +132,12 @@ This page is **not yet designed**. Discussion points below.
 - [ ] Build album detail page (`src/pages/photography/[slug].astro`)
 - [ ] Build album row renderer (Svelte component, shared with admin)
 - [ ] Lightbox Svelte island
-- [ ] R2 URL resolution utility
+- [x] Cloudinary display URL and R2 original download URL utilities
 - [ ] Add sample album descriptor + test photos
 
 **Checkpoint:** At least one album is browsable end-to-end from the photography
-index, with working lightbox, photos served from R2.
+index, with working lightbox, display images served from Cloudinary, and
+original downloads backed by R2.
 
 ---
 

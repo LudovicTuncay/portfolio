@@ -7,6 +7,10 @@
 		"directory": "./dist",
 		"binding": "ASSETS"
 	},
+	// Add this once the originals bucket exists and private R2 downloads are implemented:
+	// "r2_buckets": [
+	// 	{ "binding": "ALBUM_ORIGINALS", "bucket_name": "your-r2-originals-bucket" }
+	// ],
 	"observability": {
 		"enabled": true
 	}

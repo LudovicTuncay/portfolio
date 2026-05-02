@@ -32,7 +32,8 @@ Interactive islands (lightbox, album editor, admin forms) are Svelte components.
 | Language | TypeScript (strict) | 5.x |
 | Runtime | Node.js | 24 LTS |
 | Hosting | Cloudflare Pages | — |
-| Photo storage | Cloudflare R2 | — |
+| Photo delivery | Cloudinary | — |
+| Original photo storage | Cloudflare R2 | — |
 | Auth (admin) | Cloudflare Access | — |
 
 ### Key files
@@ -74,7 +75,7 @@ npx astro add <integration>
 ## Content Collections — Schema & Conventions
 
 Content lives in `src/content/`. Each collection has a schema defined in
-`src/content/config.ts` using Astro's `defineCollection` + Zod.
+`src/content.config.ts` using Astro's `defineCollection` + Zod.
 
 ### ⚠️ Clarifying questions policy
 
@@ -150,19 +151,30 @@ Path: `src/content/albums/<slug>.json`
 {
   "title": "string",
   "date": "YYYY-MM-DD",
-  "coverPhoto": "filename.jpg",
+  "coverPhoto": "photo-id",
   "description": "string | null",
+  "photos": [
+    {
+      "id": "photo-id",
+      "alt": "string",
+      "cloudinaryPublicId": "album-slug/DSC001",
+      "r2Key": "albums/album-slug/originals/DSC001.RAF",
+      "width": 3000,
+      "height": 2000
+    }
+  ],
   "rows": [
-    { "layout": "full-bleed", "photo": "DSC001.jpg" },
-    { "layout": "diptych",    "photos": ["DSC002.jpg", "DSC003.jpg"] },
-    { "layout": "triptych",   "photos": ["DSC004.jpg", "DSC005.jpg", "DSC006.jpg"] }
+    { "layout": "full-bleed", "photo": "photo-id" },
+    { "layout": "diptych",    "photos": ["photo-id-1", "photo-id-2"] },
+    { "layout": "triptych",   "photos": ["photo-id-1", "photo-id-2", "photo-id-3"] }
   ]
 }
 ```
 
-Photo files are stored in Cloudflare R2, NOT in the git repo.
-The JSON descriptor is committed to git; the album renderer resolves photo URLs
-from R2 at runtime.
+Optimized display images are served from Cloudinary. Original downloadable
+files are stored in Cloudflare R2, NOT in the git repo. The JSON descriptor is
+committed to git; the album renderer resolves display URLs from Cloudinary and
+download URLs from R2 metadata.
 
 ---
 

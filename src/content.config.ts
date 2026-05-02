@@ -43,4 +43,41 @@ const repos = defineCollection({
   })
 });
 
-export const collections = { papers, repos };
+const albumPhotoSchema = z.object({
+  id: z.string().min(1),
+  alt: z.string(),
+  cloudinaryPublicId: z.string().min(1),
+  r2Key: z.string().min(1),
+  width: z.number().int().positive(),
+  height: z.number().int().positive(),
+  blurDataUrl: z.string().optional()
+});
+
+const albumRowSchema = z.discriminatedUnion("layout", [
+  z.object({
+    layout: z.literal("full-bleed"),
+    photo: z.string().min(1)
+  }),
+  z.object({
+    layout: z.literal("diptych"),
+    photos: z.tuple([z.string().min(1), z.string().min(1)])
+  }),
+  z.object({
+    layout: z.literal("triptych"),
+    photos: z.tuple([z.string().min(1), z.string().min(1), z.string().min(1)])
+  })
+]);
+
+const albums = defineCollection({
+  loader: glob({ base: "./src/content/albums", pattern: "**/*.json" }),
+  schema: z.object({
+    title: z.string(),
+    date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    coverPhoto: z.string().min(1),
+    description: z.string().nullable().default(null),
+    photos: z.array(albumPhotoSchema).min(1),
+    rows: z.array(albumRowSchema).default([])
+  })
+});
+
+export const collections = { papers, repos, albums };
